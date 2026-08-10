@@ -1,38 +1,169 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>اسم المشروع</title>
+
+    <title>Virtual Innovation Lab</title>
+
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-    <header>
-        <h1>Testora</h1>
-        <p>Test your idea before you build it</p>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="brand">
             <img src="logo.png" alt="Virtual Innovation Lab Logo">
-    <h1>Virtual Innovation Lab</h1>
-    </header>
+            <span>Virtual Innovation Lab</span>
+        </div>
 
-    <main>
-        <section>
-            <h2>شنو يقدم موقعنا؟</h2>
-            <p>اكتبوا هنا فكرة المشروع بشكل مختصر.</p>
-            <button id="startButton">ابدأ</button>
+        <div class="nav-links">
+            <a href="#home">Home</a>
+            <a href="#features">Features</a>
+            <a href="#how-it-works">How It Works</a>
+        </div>
+    </nav>
+
+
+    <!-- Hero Section -->
+    <main id="home">
+
+        <section class="hero">
+
+            <div class="hero-content">
+
+                <p class="small-title">VIRTUAL INNOVATION LAB</p>
+
+                <h1>
+                    Test your idea
+                    <br>
+                    before you build it.
+                </h1>
+
+                <p class="hero-description">
+                    Explore your idea, test it virtually, and understand
+                    its potential before turning it into reality.
+                </p>
+
+                <a href="#features" class="primary-button">
+                    Start Exploring
+                </a>
+
+            </div>
+
         </section>
 
-        <section id="result">
-            <h2>النتيجة</h2>
-            <p id="message"></p>
+
+        <!-- Features -->
+        <section id="features" class="features">
+
+            <div class="section-heading">
+                <p class="small-title">EXPLORE YOUR IDEA</p>
+
+                <h2>What can you do?</h2>
+
+                <p>
+                    Choose the path that fits your idea.
+                </p>
+            </div>
+
+
+            <div class="feature-cards">
+
+                <!-- Idea Analysis -->
+                <div class="feature-card">
+
+                    <div class="card-icon">01</div>
+
+                    <h3>Idea Analysis</h3>
+
+                    <p>
+                        Answer guided questions and get AI-powered
+                        insights about your idea.
+                    </p>
+
+                    <a href="analysis.html" class="card-button">
+                        Start Analysis
+                    </a>
+
+                </div>
+
+
+                <!-- Virtual Lab -->
+                <div class="feature-card">
+
+                    <div class="card-icon">02</div>
+
+                    <h3>Virtual Lab</h3>
+
+                    <p>
+                        Run virtual experiments and explore how
+                        different variables affect your results.
+                    </p>
+
+                    <a href="lab.html" class="card-button">
+                        Enter Lab
+                    </a>
+
+                </div>
+
+            </div>
+
         </section>
+
+
+        <!-- How It Works -->
+        <section id="how-it-works" class="how-it-works">
+
+            <div class="section-heading">
+
+                <p class="small-title">THE PROCESS</p>
+
+                <h2>How it works</h2>
+
+            </div>
+
+
+            <div class="steps">
+
+                <div class="step">
+                    <span>01</span>
+                    <h3>Define</h3>
+                    <p>
+                        Start with your idea and define what you want to achieve.
+                    </p>
+                </div>
+
+                <div class="step">
+                    <span>02</span>
+                    <h3>Explore</h3>
+                    <p>
+                        Analyze your idea or experiment with it virtually.
+                    </p>
+                </div>
+
+                <div class="step">
+                    <span>03</span>
+                    <h3>Discover</h3>
+                    <p>
+                        Get insights that help you improve your idea.
+                    </p>
+                </div>
+
+            </div>
+
+        </section>
+
     </main>
 
+
+    <!-- Footer -->
     <footer>
-        <p>© 2026 مشروعنا</p>
+        <p>Virtual Innovation Lab</p>
+        <p>Test. Explore. Innovate.</p>
     </footer>
 
-    <script src="script.js"></script>
+
 </body>
 </html>
