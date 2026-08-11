@@ -143,7 +143,7 @@ body {
     margin-bottom: 10px;
 }
 
-.section-heading > p:last-child {
+.section-heading>p:last-child {
     color: #666;
 }
 
@@ -269,7 +269,7 @@ footer p:last-child {
         padding: 15px 5%;
     }
 
-    
+
     .nav-links {
         display: none;
     }
@@ -302,5 +302,750 @@ footer p:last-child {
 
     .steps {
         grid-template-columns: 1fr;
+    }
+}
+
+/* =========================
+   Idea Analysis Page
+========================= */
+
+.analysis-page {
+    min-height: 85vh;
+    padding: 80px 20px;
+    background: #f7f8fc;
+}
+
+.analysis-header {
+    max-width: 750px;
+    margin: 0 auto 45px;
+    text-align: center;
+}
+
+.analysis-header h1 {
+    font-size: 48px;
+    line-height: 1.1;
+    margin-bottom: 20px;
+}
+
+.analysis-header>p:last-child {
+    color: #666;
+    font-size: 17px;
+}
+
+
+/* Question Card */
+
+.question-card {
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 40px;
+    background: white;
+    border: 1px solid #e5e7ed;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+}
+
+.question-number {
+    color: #777;
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.question-card h2 {
+    font-size: 28px;
+    margin-bottom: 30px;
+}
+
+
+/* Options */
+
+.options {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+}
+
+.option {
+    padding: 18px;
+    background: white;
+    border: 2px solid #e2e4ea;
+    border-radius: 12px;
+    font-size: 16px;
+    cursor: pointer;
+    text-align: left;
+    transition: 0.2s;
+}
+
+.option:hover {
+    border-color: #1d2433;
+    transform: translateY(-2px);
+}
+
+.option:focus {
+    border-color: #1d2433;
+}
+
+
+.next-button {
+    width: 100%;
+    margin-top: 30px;
+    padding: 15px;
+    border: none;
+    border-radius: 10px;
+    background: #1d2433;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.next-button:hover {
+    transform: translateY(-2px);
+}
+
+
+
+@media (max-width: 600px) {
+
+    .analysis-page {
+        padding: 55px 15px;
+    }
+
+    .analysis-header h1 {
+        font-size: 36px;
+    }
+
+    .question-card {
+        padding: 25px;
+    }
+
+    .question-card h2 {
+        font-size: 23px;
+    }
+
+    .options {
+        grid-template-columns: 1fr;
+    }
+}
+
+const questions=[ {
+    question: "What type of idea are you working on?",
+        options: [ "Business",
+        "Scientific",
+        "Engineering",
+        "Technology"
+        ]
+}
+
+,
+{
+question: "What problem does your idea solve?",
+    options: [ "Saves time",
+    "Reduces cost",
+    "Improves safety",
+    "Solves a common problem"
+    ]
+}
+
+,
+{
+question: "Who is your target user?",
+    options: [ "Students",
+    "Businesses",
+    "Families",
+    "General public"
+    ]
+}
+
+,
+{
+question: "How difficult would it be to build your idea?",
+    options: [ "Easy",
+    "Moderate",
+    "Difficult",
+    "Very difficult"
+    ]
+}
+
+,
+{
+question: "What resources do you need?",
+    options: [ "Low resources",
+    "Moderate resources",
+    "Many resources",
+    "Not sure"
+    ]
+}
+
+];
+
+let currentQuestion=0;
+let answers=[];
+
+const questionNumber=document.querySelector(".question-number");
+const questionTitle=document.querySelector(".question-card h2");
+const optionsContainer=document.querySelector(".options");
+const nextButton=document.querySelector(".next-button");
+
+function showQuestion() {
+
+    const question=questions[currentQuestion];
+
+    questionNumber.textContent=Question $ {
+        currentQuestion+1
+    }
+
+    of $ {
+        questions.length
+    }
+
+    ;
+
+    questionTitle.textContent=question.question;
+
+    optionsContainer.innerHTML="";
+
+    question.options.forEach(function(option) {
+
+            const button=document.createElement("button");
+
+            button.className="option";
+            button.textContent=option;
+
+            button.addEventListener("click", function() {
+
+                    document.querySelectorAll(".option").forEach(function(btn) {
+                            btn.classList.remove("selected");
+                        });
+
+                    button.classList.add("selected");
+
+                    button.dataset.selected="true";
+                });
+
+            optionsContainer.appendChild(button);
+        });
+
+    if (currentQuestion===questions.length - 1) {
+        nextButton.textContent="Analyze My Idea";
+    }
+
+    else {
+        nextButton.textContent="Next";
+    }
+}
+
+
+nextButton.addEventListener("click", function() {
+
+        const selected=document.querySelector(".option.selected");
+
+        if ( !selected) {
+            alert("Please select an answer.");
+            return;
+        }
+
+        answers.push(selected.textContent);
+
+        if (currentQuestion < questions.length - 1) {
+
+            currentQuestion++;
+
+            showQuestion();
+
+        }
+
+        else {
+
+            console.log("User answers:", answers);
+
+            alert("Your answers are ready for AI analysis!");
+        }
+    });
+
+
+showQuestion();
+
+/* =========================================
+   ANALYSIS PAGE ONLY
+   ========================================= */
+
+.analysis-page {
+    min-height: 100vh;
+    padding: 45px 20px;
+
+    background:
+        radial-gradient(circle at 50% 0%,
+            #d8b4fe 0%,
+            #a855f7 35%,
+            #7e22ce 70%,
+            #4c1d95 100%) !important;
+
+    color: white;
+
+    position: relative;
+    overflow: hidden;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+/* =========================================
+   ★ STARS
+   ========================================= */
+
+.analysis-page::before {
+    content: "★";
+
+    position: absolute;
+    top: 10%;
+    left: 8%;
+
+    color: #ffffff;
+
+    font-size: 18px;
+
+    text-shadow:
+        150px 80px 0 #f3e8ff,
+        320px 20px 0 #ffffff,
+        500px 130px 0 #e9d5ff,
+        650px 40px 0 #ffffff,
+        90px 300px 0 #f3e8ff,
+        280px 380px 0 #ffffff,
+        470px 300px 0 #e9d5ff,
+        620px 450px 0 #ffffff,
+        50px 550px 0 #f3e8ff,
+        350px 600px 0 #ffffff;
+
+    animation: starsGlow 2.5s ease-in-out infinite alternate;
+
+    pointer-events: none;
+    z-index: 0;
+}
+
+
+/* =========================================
+   ٭ STARS
+   ========================================= */
+
+.analysis-page::after {
+    content: "٭";
+
+    position: absolute;
+    top: 20%;
+    right: 10%;
+
+    color: #f5e9ff;
+
+    font-size: 16px;
+
+    text-shadow:
+        -120px 40px 0 #ffffff,
+        -280px 100px 0 #e9d5ff,
+        -430px 30px 0 #ffffff,
+        -600px 160px 0 #f3e8ff,
+        -80px 280px 0 #ffffff,
+        -240px 350px 0 #e9d5ff,
+        -400px 270px 0 #ffffff,
+        -580px 430px 0 #f3e8ff,
+        -150px 500px 0 #ffffff,
+        -350px 580px 0 #e9d5ff;
+
+    animation: starsTwinkle 3s ease-in-out infinite alternate;
+
+    pointer-events: none;
+    z-index: 0;
+}
+
+
+/* =========================================
+   STARS ANIMATION
+   ========================================= */
+
+@keyframes starsGlow {
+
+    0% {
+        opacity: 0.3;
+        transform: scale(0.8);
+        filter: drop-shadow(0 0 3px #ffffff);
+    }
+
+    50% {
+        opacity: 0.8;
+        transform: scale(1);
+        filter: drop-shadow(0 0 10px #ffffff);
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1.15);
+        filter: drop-shadow(0 0 18px #ffffff);
+    }
+}
+
+
+@keyframes starsTwinkle {
+
+    0% {
+        opacity: 0.25;
+        filter: drop-shadow(0 0 3px #ffffff);
+    }
+
+    50% {
+        opacity: 0.75;
+        filter: drop-shadow(0 0 8px #ffffff);
+    }
+
+    100% {
+        opacity: 1;
+        filter: drop-shadow(0 0 15px #ffffff);
+    }
+}
+
+
+/* =========================================
+   HEADER
+   ========================================= */
+
+.analysis-page .analysis-header {
+    text-align: center;
+
+    position: relative;
+    z-index: 2;
+
+    margin-bottom: 35px;
+}
+
+
+.analysis-page .small-title {
+    color: #ffffff;
+
+    font-size: 14px;
+    font-weight: bold;
+
+    letter-spacing: 3px;
+
+    margin-bottom: 12px;
+
+    text-shadow:
+        0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+
+.analysis-page .analysis-header h1 {
+    color: white;
+
+    font-size: 42px;
+
+    margin-bottom: 15px;
+
+    text-shadow:
+        0 0 15px rgba(76, 29, 149, 0.5);
+}
+
+
+.analysis-page .analysis-header p {
+    color: #f5eaff;
+
+    font-size: 16px;
+
+    line-height: 1.6;
+}
+
+
+/* =========================================
+   QUESTION CARD
+   ========================================= */
+
+.analysis-page .question-card {
+    width: 700px;
+    max-width: 100%;
+
+    padding: 40px;
+
+    background: rgba(38, 12, 65, 0.90);
+
+    border: 1px solid rgba(255, 255, 255, 0.25);
+
+    border-radius: 24px;
+
+    position: relative;
+    z-index: 2;
+
+    box-shadow:
+        0 0 35px rgba(76, 29, 149, 0.35),
+        0 20px 60px rgba(44, 0, 80, 0.4);
+}
+
+
+/* =========================================
+   QUESTION NUMBER
+   ========================================= */
+
+.analysis-page .question-number {
+    color: #d8b4fe;
+
+    font-size: 14px;
+    font-weight: bold;
+
+    margin-bottom: 18px;
+
+    text-shadow:
+        0 0 8px rgba(216, 180, 254, 0.4);
+}
+
+
+/* =========================================
+   QUESTION
+   ========================================= */
+
+.analysis-page .question-card h2 {
+    color: white;
+
+    font-size: 27px;
+
+    line-height: 1.4;
+
+    margin-bottom: 28px;
+}
+
+
+/* =========================================
+   OPTIONS
+   ========================================= */
+
+.analysis-page .options {
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 15px;
+}
+
+
+/* =========================================
+   OPTION
+   ========================================= */
+
+.analysis-page .option {
+    position: relative;
+
+    padding: 19px 20px;
+
+    background: rgba(255, 255, 255, 0.06);
+
+    border: 1px solid rgba(255, 255, 255, 0.25);
+
+    border-radius: 14px;
+
+    color: white;
+
+    font-size: 16px;
+
+    text-align: left;
+
+    cursor: pointer;
+
+    overflow: hidden;
+
+    transition:
+        background 0.3s ease,
+        border-color 0.3s ease,
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+
+/* =========================================
+   OPTION HOVER
+   ========================================= */
+
+.analysis-page .option:hover {
+    background: rgba(255, 255, 255, 0.12);
+
+    border-color: #e9d5ff;
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 0 20px rgba(255, 255, 255, 0.18);
+}
+
+
+/* =========================================
+   SELECTED OPTION
+   ========================================= */
+
+.analysis-page .option.selected {
+    background: rgba(168, 85, 247, 0.30);
+
+    border-color: #e9d5ff;
+
+    box-shadow:
+        -10px 0 28px rgba(126, 34, 206, 0.65),
+        10px 0 28px rgba(126, 34, 206, 0.65),
+        0 0 35px rgba(168, 85, 247, 0.35);
+
+    animation:
+        purpleGlow 1.4s ease-in-out infinite alternate;
+}
+
+
+/* =========================================
+   LIGHT FROM BOTH SIDES
+   ========================================= */
+
+.analysis-page .option.selected::before,
+.analysis-page .option.selected::after {
+
+    content: "";
+
+    position: absolute;
+
+    top: 15%;
+    bottom: 15%;
+
+    width: 4px;
+
+    border-radius: 20px;
+
+    background: #ffffff;
+
+    box-shadow:
+        0 0 8px #e9d5ff,
+        0 0 18px #c084fc,
+        0 0 30px #a855f7,
+        0 0 45px #7e22ce;
+
+    animation:
+        sideLight 1s ease-in-out infinite alternate;
+}
+
+
+.analysis-page .option.selected::before {
+    left: 0;
+}
+
+
+.analysis-page .option.selected::after {
+    right: 0;
+}
+
+
+/* =========================================
+   PURPLE GLOW ANIMATION
+   ========================================= */
+
+@keyframes purpleGlow {
+
+    from {
+        box-shadow:
+            -5px 0 18px rgba(126, 34, 206, 0.35),
+            5px 0 18px rgba(126, 34, 206, 0.35);
+    }
+
+    to {
+        box-shadow:
+            -14px 0 35px rgba(126, 34, 206, 0.70),
+            14px 0 35px rgba(126, 34, 206, 0.70);
+    }
+}
+
+
+@keyframes sideLight {
+
+    from {
+        opacity: 0.35;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+
+/* =========================================
+   NEXT BUTTON
+   ========================================= */
+
+.analysis-page .next-button {
+    width: 100%;
+
+    margin-top: 25px;
+
+    padding: 17px;
+
+    border: none;
+
+    border-radius: 13px;
+
+    background:
+        linear-gradient(135deg,
+            #6d28d9,
+            #a855f7,
+            #7e22ce);
+
+    color: white;
+
+    font-size: 17px;
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition: 0.3s ease;
+
+    box-shadow:
+        0 5px 25px rgba(126, 34, 206, 0.45);
+}
+
+
+.analysis-page .next-button:hover {
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 8px 40px rgba(126, 34, 206, 0.75);
+}
+
+
+/* =========================================
+   MOBILE
+   ========================================= */
+
+@media (max-width: 600px) {
+
+    .analysis-page {
+        padding: 30px 15px;
+    }
+
+    .analysis-page .analysis-header h1 {
+        font-size: 30px;
+    }
+
+    .analysis-page .analysis-header p {
+        font-size: 14px;
+    }
+
+    .analysis-page .question-card {
+        padding: 25px;
+    }
+
+    .analysis-page .question-card h2 {
+        font-size: 22px;
+    }
+
+    .analysis-page .options {
+        grid-template-columns: 1fr;
+    }
+
+    .analysis-page::before {
+        font-size: 15px;
+    }
+
+    .analysis-page::after {
+        font-size: 13px;
     }
 }
