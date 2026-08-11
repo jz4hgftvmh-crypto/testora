@@ -1,65 +1,177 @@
-formatMoney(profit);
+const questions = [
+    {
+        question: "What are you trying to create?",
+        options: [
+            "Physical product",
+            "Software / App",
+            "Scientific experiment",
+            "Engineering system"
+        ]
+    },
+    {
+        question: "What problem does your idea solve?",
+        options: [
+            "Saves time",
+            "Reduces cost",
+            "Improves safety",
+            "Reduces waste"
+        ]
+    },
+    {
+        question: "Who is your target user?",
+        options: [
+            "Students",
+            "Businesses",
+            "Families",
+            "General public"
+        ]
+    },
+    {
+        question: "What technology does your idea use?",
+        options: [
+            "AI",
+            "Sensors",
+            "Renewable energy",
+            "Software",
+            "Mechanical system"
+        ]
+    },
+    {
+        question: "What does your idea need?",
+        options: [
+            "Electricity",
+            "Water",
+            "Materials",
+            "Data"
+        ]
+    },
+    {
+        question: "What is your biggest challenge?",
+        options: [
+            "Technical difficulty",
+            "Cost",
+            "Materials",
+            "Safety"
+        ]
+    },
+    {
+        question: "What stage is your idea at?",
+        options: [
+            "Just an idea",
+            "Basic design",
+            "Prototype",
+            "Already tested"
+        ]
+    },
+    {
+        question: "What is your starting budget?",
+        options: [
+            "Under $100",
+            "$100 - $500",
+            "$500 - $1,000",
+            "Over $1,000"
+        ]
+    },
+    {
+        question: "What would ONE unit cost?",
+        options: [
+            "Under $5",
+            "$5 - $20",
+            "$20 - $50",
+            "Over $50"
+        ]
+    },
+    {
+        question: "What price could customers pay?",
+        options: [
+            "Under $10",
+            "$10 - $50",
+            "$50 - $100",
+            "Over $100"
+        ]
+    },
+    {
+        question: "How many units could you sell per month?",
+        options: [
+            "1 - 10",
+            "11 - 50",
+            "51 - 100",
+            "Over 100"
+        ]
+    }
+];
 
+let currentQuestion = 0;
+let answers = [];
 
-    answersList.innerHTML = "";
+const questionNumber = document.querySelector(".question-number");
+const questionTitle = document.querySelector(".question-card h2");
+const optionsContainer = document.querySelector(".options");
+const nextButton = document.querySelector(".next-button");
 
+function showQuestion() {
 
-    questions.forEach(function(question, index) {
+    const question = questions[currentQuestion];
 
-        const item =
-            document.createElement("div");
+    questionNumber.textContent =
+        "Question " + (currentQuestion + 1) +
+        " of " + questions.length;
 
-        item.className = "answer-item";
+    questionTitle.textContent = question.question;
 
+    optionsContainer.innerHTML = "";
 
-        const questionElement =
-            document.createElement("strong");
+    question.options.forEach(function(option) {
 
-        questionElement.textContent =
-            question.question;
+        const button = document.createElement("button");
 
+        button.className = "option";
+        button.textContent = option;
+        button.type = "button";
 
-        const answerElement =
-            document.createElement("span");
+        button.addEventListener("click", function() {
 
-        answerElement.textContent =
-            answers[index];
+            document.querySelectorAll(".option").forEach(function(item) {
+                item.classList.remove("selected");
+            });
 
+            button.classList.add("selected");
 
-        item.appendChild(questionElement);
+            answers[currentQuestion] = option;
 
-        item.appendChild(answerElement);
+        });
 
-        answersList.appendChild(item);
+        optionsContainer.appendChild(button);
 
     });
-{
 
-    questionCard.style.display = "none";
-
-    resultsCard.classList.add("show");
-
+    if (currentQuestion === questions.length - 1) {
+        nextButton.textContent = "Analyze My Idea";
+    } else {
+        nextButton.textContent = "Next";
+    }
 }
 
 
-function formatMoney(number) {
+nextButton.addEventListener("click", function() {
 
-    return "$" + number.toLocaleString();
+    if (!answers[currentQuestion]) {
+        alert("Please select an answer first.");
+        return;
+    }
 
-}
+    if (currentQuestion < questions.length - 1) {
 
+        currentQuestion++;
 
-restartButton.addEventListener("click", function() {
+        showQuestion();
 
-    currentQuestion = 0;
+    } else {
 
-    answers = new Array(questions.length);
+        console.log("All answers:", answers);
 
-    resultsCard.classList.remove("show");
-
-    questionCard.style.display = "block";
-
-    showQuestion();
+        alert("Analysis completed!");
+    }
 
 });
 
