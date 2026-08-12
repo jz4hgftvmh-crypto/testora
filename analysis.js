@@ -72,33 +72,34 @@ const questions = [
             "Over $1,000"
         ]
     },
-    {
-        question: "What would ONE unit cost?",
-        options: [
-            "Under $5",
-            "$5 - $20",
-            "$20 - $50",
-            "Over $50"
-        ]
-    },
-    {
-        question: "What price could customers pay?",
-        options: [
-            "Under $10",
-            "$10 - $50",
-            "$50 - $100",
-            "Over $100"
-        ]
-    },
-    {
-        question: "How many units could you sell per month?",
-        options: [
-            "1 - 10",
-            "11 - 50",
-            "51 - 100",
-            "Over 100"
-        ]
-    }
+    
+   {
+    question: "What would ONE unit cost to make?",
+    options: [
+        "$5",
+        "$20",
+        "$50",
+        "$100"
+    ]
+},
+{
+    question: "What price could customers pay?",
+    options: [
+        "$10",
+        "$50",
+        "$100",
+        "$200"
+    ]
+},
+{
+    question: "How many units could you sell per month?",
+    options: [
+        "10",
+        "50",
+        "100",
+        "500"
+    ]
+}
 ];
 
 let currentQuestion = 0;
@@ -170,10 +171,65 @@ nextButton.addEventListener("click", function() {
 
         console.log("All answers:", answers);
 
-        alert("Analysis completed!");
+   showResults();
     }
 
 });
+function showResults() {
 
+    optionsContainer.innerHTML = "";
+
+    questionTitle.textContent = "Your Financial Estimate";
+
+    questionNumber.textContent = "Analysis Complete";
+
+    nextButton.style.display = "none";
+
+
+    const unitCost = Number(
+        answers[answers.length - 3].replace("$", "")
+    );
+
+    const sellingPrice = Number(
+        answers[answers.length - 2].replace("$", "")
+    );
+
+    const monthlySales = Number(
+        answers[answers.length - 1]
+    );
+
+
+    const revenue = sellingPrice * monthlySales;
+
+    const cost = unitCost * monthlySales;
+
+    const profit = revenue - cost;
+
+
+    const result = document.createElement("div");
+
+    result.className = "result-message";
+
+    result.innerHTML = `
+        <h3>Estimated Monthly Results</h3>
+
+        <p>
+            Estimated Revenue:
+            <strong>$${revenue.toLocaleString()}</strong>
+        </p>
+
+        <p>
+            Estimated Cost:
+            <strong>$${cost.toLocaleString()}</strong>
+        </p>
+
+        <p>
+            Estimated Gross Profit:
+            <strong>$${profit.toLocaleString()}</strong>
+        </p>
+    `;
+
+    optionsContainer.appendChild(result);
+}
 
 showQuestion();
