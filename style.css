@@ -430,260 +430,690 @@ footer p:last-child {
     }
 }
 
-const questions=[ {
-    question: "What type of idea are you working on?",
-        options: [ "Business",
-        "Scientific",
-        "Engineering",
-        "Technology"
-        ]
+/* =========================================================
+   IDEA ANALYSIS PAGE
+   Purple Theme + Animated Stars
+   ========================================================= */
+
+
+/* =========================
+   GENERAL
+========================= */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
-,
-{
-question: "What problem does your idea solve?",
-    options: [ "Saves time",
-    "Reduces cost",
-    "Improves safety",
-    "Solves a common problem"
-    ]
+html {
+    scroll-behavior: smooth;
 }
 
-,
-{
-question: "Who is your target user?",
-    options: [ "Students",
-    "Businesses",
-    "Families",
-    "General public"
-    ]
-}
-
-,
-{
-question: "How difficult would it be to build your idea?",
-    options: [ "Easy",
-    "Moderate",
-    "Difficult",
-    "Very difficult"
-    ]
-}
-
-,
-{
-question: "What resources do you need?",
-    options: [ "Low resources",
-    "Moderate resources",
-    "Many resources",
-    "Not sure"
-    ]
-}
-
-];
-
-let currentQuestion=0;
-let answers=[];
-
-const questionNumber=document.querySelector(".question-number");
-const questionTitle=document.querySelector(".question-card h2");
-const optionsContainer=document.querySelector(".options");
-const nextButton=document.querySelector(".next-button");
-
-function showQuestion() {
-
-    const question=questions[currentQuestion];
-
-    questionNumber.textContent=Question $ {
-        currentQuestion+1
-    }
-
-    of $ {
-        questions.length
-    }
-
-    ;
-
-    questionTitle.textContent=question.question;
-
-    optionsContainer.innerHTML="";
-
-    question.options.forEach(function(option) {
-
-            const button=document.createElement("button");
-
-            button.className="option";
-            button.textContent=option;
-
-            button.addEventListener("click", function() {
-
-                    document.querySelectorAll(".option").forEach(function(btn) {
-                            btn.classList.remove("selected");
-                        });
-
-                    button.classList.add("selected");
-
-                    button.dataset.selected="true";
-                });
-
-            optionsContainer.appendChild(button);
-        });
-
-    if (currentQuestion===questions.length - 1) {
-        nextButton.textContent="Analyze My Idea";
-    }
-
-    else {
-        nextButton.textContent="Next";
-    }
-}
-
-
-nextButton.addEventListener("click", function() {
-
-        const selected=document.querySelector(".option.selected");
-
-        if ( !selected) {
-            alert("Please select an answer.");
-            return;
-        }
-
-        answers.push(selected.textContent);
-
-        if (currentQuestion < questions.length - 1) {
-
-            currentQuestion++;
-
-            showQuestion();
-
-        }
-
-        else {
-
-            console.log("User answers:", answers);
-
-            alert("Your answers are ready for AI analysis!");
-        }
-    });
-
-
-showQuestion();
-
-/* =========================================
-   ANALYSIS PAGE ONLY
-   ========================================= */
-
-.analysis-page {
+body:has(.analysis-page) {
+    font-family: Arial, Helvetica, sans-serif;
     min-height: 100vh;
-    padding: 45px 20px;
+    color: #ffffff;
 
     background:
         radial-gradient(circle at 50% 0%,
             #d8b4fe 0%,
-            #a855f7 35%,
-            #7e22ce 70%,
-            #4c1d95 100%) !important;
+            #b982e8 25%,
+            #8d5fbe 55%,
+            #68448f 100%);
 
-    color: white;
-
-    position: relative;
-    overflow: hidden;
-
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    overflow-x: hidden;
 }
 
 
-/* =========================================
-   ★ STARS
-   ========================================= */
+/* =========================================================
+   NAVIGATION
+========================================================= */
 
-.analysis-page::before {
-    content: "★";
+body:has(.analysis-page) .navbar {
+    width: 100%;
+    height: 75px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 0 7%;
+
+    background: rgba(35, 17, 57, 0.92);
+
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+
+    position: relative;
+    z-index: 20;
+}
+
+body:has(.analysis-page) .brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    color: white;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+body:has(.analysis-page) .brand img {
+    width: 42px;
+    height: 42px;
+    object-fit: contain;
+}
+
+body:has(.analysis-page) .navbar>a {
+    color: #ffffff;
+    text-decoration: none;
+
+    font-size: 14px;
+    font-weight: 500;
+
+    transition: 0.3s ease;
+}
+
+body:has(.analysis-page) .navbar>a:hover {
+    color: #e9d5ff;
+    text-shadow: 0 0 12px #d8b4fe;
+}
+
+
+/* =========================================================
+   MAIN BACKGROUND
+========================================================= */
+
+body:has(.analysis-page) .analysis-page {
+    min-height: calc(100vh - 75px);
+
+    position: relative;
+
+    padding: 70px 20px 100px;
+
+    overflow: hidden;
+
+    background:
+        radial-gradient(circle at 50% 15%,
+            rgba(255, 255, 255, 0.16),
+            transparent 30%),
+        linear-gradient(135deg,
+            #c99aed 0%,
+            #a56bd0 35%,
+            #8052a9 70%,
+            #62417f 100%);
+}
+
+
+/* =========================================================
+   ANIMATED STARS
+========================================================= */
+
+body:has(.analysis-page) .analysis-page::before {
+    content:
+        "★   ٭       ★       ٭          ★"
+        "      ٭       ★       ٭       ★"
+        "★       ٭          ★       ٭";
 
     position: absolute;
-    top: 10%;
-    left: 8%;
 
-    color: #ffffff;
+    top: 25px;
+    left: 0;
 
-    font-size: 18px;
+    width: 100%;
+    height: 100%;
 
-    text-shadow:
-        150px 80px 0 #f3e8ff,
-        320px 20px 0 #ffffff,
-        500px 130px 0 #e9d5ff,
-        650px 40px 0 #ffffff,
-        90px 300px 0 #f3e8ff,
-        280px 380px 0 #ffffff,
-        470px 300px 0 #e9d5ff,
-        620px 450px 0 #ffffff,
-        50px 550px 0 #f3e8ff,
-        350px 600px 0 #ffffff;
+    color: rgba(255, 255, 255, 0.75);
 
-    animation: starsGlow 2.5s ease-in-out infinite alternate;
+    font-size: 16px;
+    line-height: 110px;
+
+    letter-spacing: 30px;
+
+    white-space: pre-wrap;
 
     pointer-events: none;
+
+    animation: starsMove 5s ease-in-out infinite alternate;
+
+    text-shadow:
+        0 0 5px rgba(255, 255, 255, 0.8),
+        0 0 12px rgba(233, 213, 255, 0.8);
+
     z-index: 0;
 }
 
 
-/* =========================================
-   ٭ STARS
-   ========================================= */
-
-.analysis-page::after {
-    content: "٭";
+body:has(.analysis-page) .analysis-page::after {
+    content:
+        "٭          ★        ٭"
+        "      ★           ٭"
+        "★          ٭          ★";
 
     position: absolute;
-    top: 20%;
-    right: 10%;
 
-    color: #f5e9ff;
+    top: 90px;
+    right: 0;
 
-    font-size: 16px;
+    width: 100%;
+    height: 100%;
 
-    text-shadow:
-        -120px 40px 0 #ffffff,
-        -280px 100px 0 #e9d5ff,
-        -430px 30px 0 #ffffff,
-        -600px 160px 0 #f3e8ff,
-        -80px 280px 0 #ffffff,
-        -240px 350px 0 #e9d5ff,
-        -400px 270px 0 #ffffff,
-        -580px 430px 0 #f3e8ff,
-        -150px 500px 0 #ffffff,
-        -350px 580px 0 #e9d5ff;
+    color: rgba(255, 255, 255, 0.65);
+
+    font-size: 12px;
+    line-height: 150px;
+
+    letter-spacing: 45px;
+
+    white-space: pre-wrap;
+    text-align: right;
+
+    pointer-events: none;
 
     animation: starsTwinkle 3s ease-in-out infinite alternate;
 
-    pointer-events: none;
+    text-shadow:
+        0 0 5px white,
+        0 0 15px #e9d5ff;
+
     z-index: 0;
 }
 
 
-/* =========================================
-   STARS ANIMATION
-   ========================================= */
+/* STAR MOVEMENT */
 
-@keyframes starsGlow {
+@keyframes starsMove {
 
     0% {
-        opacity: 0.3;
-        transform: scale(0.8);
-        filter: drop-shadow(0 0 3px #ffffff);
+        transform: translateY(0) translateX(0);
+        opacity: 0.45;
     }
 
     50% {
-        opacity: 0.8;
-        transform: scale(1);
-        filter: drop-shadow(0 0 10px #ffffff);
+        transform: translateY(-15px) translateX(8px);
+        opacity: 0.9;
     }
 
     100% {
+        transform: translateY(8px) translateX(-5px);
+        opacity: 0.55;
+    }
+}
+
+
+/* STAR TWINKLING */
+
+@keyframes starsTwinkle {
+
+    0% {
+        opacity: 0.25;
+        transform: scale(0.9);
+    }
+
+    50% {
         opacity: 1;
-        transform: scale(1.15);
-        filter: drop-shadow(0 0 18px #ffffff);
+        transform: scale(1.05);
+    }
+
+    100% {
+        opacity: 0.4;
+        transform: scale(0.95);
+    }
+}
+
+
+/* =========================================================
+   ANALYSIS HEADER
+========================================================= */
+
+body:has(.analysis-page) .analysis-header {
+    position: relative;
+    z-index: 2;
+
+    max-width: 850px;
+
+    margin: 0 auto 45px;
+
+    text-align: center;
+}
+
+body:has(.analysis-page) .small-title {
+    margin-bottom: 15px;
+
+    color: #f1dfff;
+
+    font-size: 12px;
+    font-weight: 700;
+
+    letter-spacing: 4px;
+
+    text-shadow:
+        0 0 8px rgba(255, 255, 255, 0.4);
+}
+
+body:has(.analysis-page) .analysis-header h1 {
+    margin-bottom: 18px;
+
+    color: #ffffff;
+
+    font-size: clamp(32px, 5vw, 52px);
+
+    font-weight: 700;
+
+    line-height: 1.1;
+
+    text-shadow:
+        0 3px 15px rgba(58, 25, 85, 0.35);
+}
+
+body:has(.analysis-page) .analysis-header>p:last-child {
+    max-width: 650px;
+
+    margin: 0 auto;
+
+    color: rgba(255, 255, 255, 0.85);
+
+    font-size: 15px;
+    line-height: 1.7;
+}
+
+
+/* =========================================================
+   QUESTION CARD
+========================================================= */
+
+body:has(.analysis-page) .question-card {
+    position: relative;
+    z-index: 5;
+
+    width: min(100%, 560px);
+
+    margin: 0 auto;
+
+    padding: 38px;
+
+    border-radius: 22px;
+
+    background:
+        linear-gradient(145deg,
+            rgba(50, 27, 72, 0.96),
+            rgba(35, 20, 53, 0.96));
+
+    border: 1px solid rgba(255, 255, 255, 0.14);
+
+    box-shadow:
+        0 20px 60px rgba(37, 13, 58, 0.45),
+        0 0 30px rgba(216, 180, 254, 0.12);
+
+    backdrop-filter: blur(12px);
+
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+body:has(.analysis-page) .question-card:hover {
+    box-shadow:
+        0 25px 70px rgba(37, 13, 58, 0.5),
+        0 0 35px rgba(216, 180, 254, 0.2);
+}
+
+
+/* =========================================================
+   QUESTION NUMBER
+========================================================= */
+
+body:has(.analysis-page) .question-number {
+    margin-bottom: 20px;
+
+    color: #ffffff;
+
+    font-size: 12px;
+    font-weight: 700;
+
+    opacity: 0.9;
+}
+
+
+/* =========================================================
+   QUESTION TITLE
+========================================================= */
+
+body:has(.analysis-page) .question-card h2 {
+    margin-bottom: 25px;
+
+    color: #ffffff;
+
+    font-size: 22px;
+    font-weight: 700;
+
+    line-height: 1.3;
+}
+
+
+/* =========================================================
+   OPTIONS
+========================================================= */
+
+body:has(.analysis-page) .options {
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 10px 12px;
+
+    margin-bottom: 20px;
+}
+
+
+/* =========================================================
+   OPTION BUTTON
+========================================================= */
+
+body:has(.analysis-page) .option {
+    min-height: 50px;
+
+    padding: 0 16px;
+
+    border-radius: 11px;
+
+    border: 1px solid rgba(255, 255, 255, 0.20);
+
+    background:
+        linear-gradient(135deg,
+            rgba(104, 71, 130, 0.65),
+            rgba(76, 50, 100, 0.65));
+
+    color: #ffffff;
+
+    font-size: 13px;
+    font-weight: 600;
+
+    text-align: left;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.25s ease,
+        border-color 0.25s ease,
+        background 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+
+/* HOVER */
+
+body:has(.analysis-page) .option:hover {
+    transform: translateY(-2px);
+
+    border-color: #d8b4fe;
+
+    background:
+        linear-gradient(135deg,
+            rgba(139, 92, 176, 0.85),
+            rgba(91, 58, 120, 0.85));
+
+    box-shadow:
+        0 0 15px rgba(216, 180, 254, 0.25);
+}
+
+
+/* SELECTED OPTION */
+
+body:has(.analysis-page) .option.selected,
+body:has(.analysis-page) .option:focus {
+    outline: none;
+
+    border-color: #e9d5ff;
+
+    background:
+        linear-gradient(135deg,
+            #8050a7,
+            #a96ed3);
+
+    box-shadow:
+        -6px 0 18px rgba(216, 180, 254, 0.55),
+        6px 0 18px rgba(216, 180, 254, 0.55),
+        0 0 25px rgba(216, 180, 254, 0.25);
+}
+
+
+/* =========================================================
+   NEXT BUTTON
+========================================================= */
+
+body:has(.analysis-page) .next-button {
+    width: 100%;
+
+    min-height: 48px;
+
+    border: none;
+
+    border-radius: 11px;
+
+    background:
+        linear-gradient(100deg,
+            #c4b5fd,
+            #e9d5ff,
+            #c4b5fd);
+
+    color: #ffffff;
+
+    font-size: 14px;
+    font-weight: 700;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 8px 25px rgba(216, 180, 254, 0.22);
+
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+body:has(.analysis-page) .next-button:hover {
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 0 20px rgba(233, 213, 255, 0.7),
+        0 10px 30px rgba(216, 180, 254, 0.3);
+}
+
+body:has(.analysis-page) .next-button:active {
+    transform: scale(0.98);
+}
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width: 650px) {
+
+    body:has(.analysis-page) .navbar {
+        padding: 0 20px;
+    }
+
+    body:has(.analysis-page) .brand span {
+        font-size: 14px;
+    }
+
+    body:has(.analysis-page) .analysis-page {
+        padding: 50px 15px 80px;
+    }
+
+    body:has(.analysis-page) .analysis-header h1 {
+        font-size: 34px;
+    }
+
+    body:has(.analysis-page) .question-card {
+        padding: 25px 20px;
+        border-radius: 18px;
+    }
+
+    body:has(.analysis-page) .options {
+        grid-template-columns: 1fr;
+    }
+
+    body:has(.analysis-page) .option {
+        min-height: 48px;
+    }
+}
+
+
+/* =========================================================
+   VIRTUAL INNOVATION LAB
+   MAIN PAGE CSS
+   ========================================================= */
+
+
+/* =========================================================
+   GENERAL
+   ========================================================= */
+
+body:has(#home) {
+    margin: 0;
+    padding: 0;
+
+    font-family: Arial, Helvetica, sans-serif;
+
+    color: #171329;
+
+    line-height: 1.6;
+
+    overflow-x: hidden;
+
+    background:
+        linear-gradient(180deg,
+            #b47bd8 0%,
+            #9d69c7 18%,
+            #8059b5 38%,
+            #6859ad 58%,
+            #5870b8 78%,
+            #4b78c0 100%);
+}
+
+body:has(#home) * {
+    box-sizing: border-box;
+}
+
+
+/* =========================================================
+   MOVING STARS
+   ========================================================= */
+
+body:has(#home)::before {
+    content:
+        "✦        ★"
+        "       ٭          ✦"
+        "★             ٭"
+        "    ✦       ★"
+        "٭             ✦"
+        "       ★          ٭";
+
+    position: fixed;
+
+    top: -100px;
+    left: 0;
+
+    width: 100%;
+    height: 130%;
+
+    z-index: 0;
+
+    pointer-events: none;
+
+    color: rgba(255, 255, 255, 0.75);
+
+    font-size: 15px;
+
+    line-height: 125px;
+
+    letter-spacing: 35px;
+
+    white-space: pre-wrap;
+
+    opacity: 0.75;
+
+    text-shadow:
+        0 0 7px rgba(255, 255, 255, 0.9),
+        0 0 15px rgba(220, 190, 255, 0.7);
+
+    animation:
+        starsDown 14s linear infinite,
+        starsTwinkle 2.8s ease-in-out infinite alternate;
+}
+
+
+body:has(#home)::after {
+    content:
+        "★          ٭"
+        "      ✦             ★"
+        "٭          ✦"
+        "          ★        ٭"
+        "✦              ★"
+        "    ٭          ✦";
+
+    position: fixed;
+
+    top: -80px;
+    left: 0;
+
+    width: 100%;
+    height: 130%;
+
+    z-index: 0;
+
+    pointer-events: none;
+
+    color: rgba(255, 255, 255, 0.45);
+
+    font-size: 11px;
+
+    line-height: 145px;
+
+    letter-spacing: 45px;
+
+    white-space: pre-wrap;
+
+    text-shadow:
+        0 0 6px rgba(255, 255, 255, 0.8);
+
+    animation:
+        starsUp 18s linear infinite,
+        starsTwinkle2 4s ease-in-out infinite alternate;
+}
+
+
+@keyframes starsDown {
+
+    0% {
+        transform: translateY(-100px);
+    }
+
+    50% {
+        transform: translateY(80px);
+    }
+
+    100% {
+        transform: translateY(-100px);
+    }
+}
+
+
+@keyframes starsUp {
+
+    0% {
+        transform: translateY(80px);
+    }
+
+    50% {
+        transform: translateY(-70px);
+    }
+
+    100% {
+        transform: translateY(80px);
     }
 }
 
@@ -692,360 +1122,755 @@ showQuestion();
 
     0% {
         opacity: 0.25;
-        filter: drop-shadow(0 0 3px #ffffff);
     }
 
     50% {
-        opacity: 0.75;
-        filter: drop-shadow(0 0 8px #ffffff);
+        opacity: 0.9;
     }
 
     100% {
-        opacity: 1;
-        filter: drop-shadow(0 0 15px #ffffff);
+        opacity: 0.4;
     }
 }
 
 
-/* =========================================
-   HEADER
-   ========================================= */
+@keyframes starsTwinkle2 {
 
-.analysis-page .analysis-header {
-    text-align: center;
+    0% {
+        opacity: 0.2;
+    }
 
-    position: relative;
-    z-index: 2;
+    50% {
+        opacity: 0.7;
+    }
 
-    margin-bottom: 35px;
+    100% {
+        opacity: 0.3;
+    }
 }
 
 
-.analysis-page .small-title {
+/* =========================================================
+   NAVBAR
+   ========================================================= */
+
+body:has(#home) .navbar {
+
+    position: relative;
+
+    z-index: 10;
+
+    width: 100%;
+
+    min-height: 72px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    padding: 0 7%;
+
+    background: rgba(31, 22, 67, 0.84);
+
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+
+    backdrop-filter: blur(12px);
+}
+
+
+body:has(#home) .brand {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+}
+
+
+body:has(#home) .brand img {
+
+    width: 42px;
+
+    height: 42px;
+
+    object-fit: contain;
+}
+
+
+body:has(#home) .brand span {
+
     color: #ffffff;
 
+    font-size: 17px;
+
+    font-weight: 700;
+}
+
+
+body:has(#home) .nav-links {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 34px;
+}
+
+
+body:has(#home) .nav-links a {
+
+    color: rgba(255, 255, 255, 0.85);
+
+    text-decoration: none;
+
     font-size: 14px;
-    font-weight: bold;
 
-    letter-spacing: 3px;
+    font-weight: 600;
 
-    margin-bottom: 12px;
+    transition: all 0.3s ease;
+}
+
+
+body:has(#home) .nav-links a:hover {
+
+    color: #ffffff;
 
     text-shadow:
-        0 0 10px rgba(255, 255, 255, 0.5);
+        0 0 10px rgba(235, 210, 255, 0.9),
+        0 0 20px rgba(202, 155, 255, 0.6);
 }
 
 
-.analysis-page .analysis-header h1 {
-    color: white;
+/* =========================================================
+   HERO
+   ========================================================= */
 
-    font-size: 42px;
-
-    margin-bottom: 15px;
-
-    text-shadow:
-        0 0 15px rgba(76, 29, 149, 0.5);
-}
-
-
-.analysis-page .analysis-header p {
-    color: #f5eaff;
-
-    font-size: 16px;
-
-    line-height: 1.6;
-}
-
-
-/* =========================================
-   QUESTION CARD
-   ========================================= */
-
-.analysis-page .question-card {
-    width: 700px;
-    max-width: 100%;
-
-    padding: 40px;
-
-    background: rgba(38, 12, 65, 0.90);
-
-    border: 1px solid rgba(255, 255, 255, 0.25);
-
-    border-radius: 24px;
+body:has(#home) .hero {
 
     position: relative;
+
+    z-index: 1;
+
+    min-height: 510px;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    text-align: center;
+
+    padding: 70px 20px 90px;
+
+    background:
+        radial-gradient(circle at 50% 25%,
+            rgba(239, 210, 255, 0.30),
+            transparent 38%);
+}
+
+
+body:has(#home) .hero-content {
+
+    position: relative;
+
     z-index: 2;
 
+    max-width: 850px;
+}
+
+
+body:has(#home) .hero .small-title {
+
+    margin: 0 0 14px;
+
+    color: #f2dcff;
+
+    font-size: 13px;
+
+    font-weight: 800;
+
+    letter-spacing: 4px;
+}
+
+
+body:has(#home) .hero h1 {
+
+    margin: 0;
+
+    color: #171329;
+
+    font-size: clamp(45px, 6vw, 76px);
+
+    line-height: 1.05;
+
+    font-weight: 800;
+
+    letter-spacing: -2px;
+}
+
+
+body:has(#home) .hero-description {
+
+    max-width: 680px;
+
+    margin: 28px auto 34px;
+
+    color: rgba(255, 255, 255, 0.86);
+
+    font-size: 17px;
+}
+
+
+body:has(#home) .primary-button {
+
+    display: inline-block;
+
+    padding: 14px 28px;
+
+    color: #ffffff;
+
+    background:
+        linear-gradient(100deg,
+            #70409f,
+            #a96bd3);
+
+    border: 1px solid rgba(255, 255, 255, 0.28);
+
+    border-radius: 10px;
+
+    text-decoration: none;
+
+    font-weight: 700;
+
     box-shadow:
-        0 0 35px rgba(76, 29, 149, 0.35),
-        0 20px 60px rgba(44, 0, 80, 0.4);
+        0 10px 30px rgba(38, 15, 70, 0.35),
+        0 0 20px rgba(199, 144, 255, 0.22);
+
+    transition: all 0.3s ease;
 }
 
 
-/* =========================================
-   QUESTION NUMBER
-   ========================================= */
+body:has(#home) .primary-button:hover {
 
-.analysis-page .question-number {
-    color: #d8b4fe;
+    transform: translateY(-3px);
 
-    font-size: 14px;
-    font-weight: bold;
-
-    margin-bottom: 18px;
-
-    text-shadow:
-        0 0 8px rgba(216, 180, 254, 0.4);
+    box-shadow:
+        0 14px 35px rgba(38, 15, 70, 0.45),
+        0 0 28px rgba(220, 174, 255, 0.5);
 }
 
 
-/* =========================================
-   QUESTION
-   ========================================= */
+/* =========================================================
+   FEATURES
+   ========================================================= */
 
-.analysis-page .question-card h2 {
-    color: white;
+body:has(#home) .features {
 
-    font-size: 27px;
-
-    line-height: 1.4;
-
-    margin-bottom: 28px;
-}
-
-
-/* =========================================
-   OPTIONS
-   ========================================= */
-
-.analysis-page .options {
-    display: grid;
-
-    grid-template-columns: 1fr 1fr;
-
-    gap: 15px;
-}
-
-
-/* =========================================
-   OPTION
-   ========================================= */
-
-.analysis-page .option {
     position: relative;
 
-    padding: 19px 20px;
+    z-index: 1;
 
-    background: rgba(255, 255, 255, 0.06);
+    padding: 95px 7%;
 
-    border: 1px solid rgba(255, 255, 255, 0.25);
+    background:
+        linear-gradient(180deg,
+            rgba(128, 84, 178, 0.20) 0%,
+            rgba(103, 83, 169, 0.34) 50%,
+            rgba(86, 101, 181, 0.42) 100%);
+}
 
-    border-radius: 14px;
 
-    color: white;
+body:has(#home) .section-heading {
 
-    font-size: 16px;
+    position: relative;
 
-    text-align: left;
+    z-index: 2;
 
-    cursor: pointer;
+    text-align: center;
+
+    margin-bottom: 55px;
+}
+
+
+body:has(#home) .section-heading .small-title {
+
+    color: #f0dcff;
+}
+
+
+body:has(#home) .section-heading h2 {
+
+    margin: 0;
+
+    color: #ffffff;
+
+    font-size: 43px;
+
+    line-height: 1.15;
+}
+
+
+body:has(#home) .section-heading>p:last-child {
+
+    color: rgba(255, 255, 255, 0.78);
+
+    margin-top: 14px;
+}
+
+
+/* =========================================================
+   FEATURE CARDS
+   ========================================================= */
+
+body:has(#home) .feature-cards {
+
+    position: relative;
+
+    z-index: 2;
+
+    max-width: 1050px;
+
+    margin: 0 auto;
+
+    display: grid;
+
+    grid-template-columns: repeat(2, 1fr);
+
+    gap: 28px;
+}
+
+
+body:has(#home) .feature-card {
+
+    position: relative;
 
     overflow: hidden;
 
+    padding: 34px;
+
+    min-height: 245px;
+
+    background:
+        linear-gradient(145deg,
+            rgba(39, 30, 77, 0.97),
+            rgba(58, 42, 101, 0.94));
+
+    border: 1px solid rgba(221, 194, 255, 0.22);
+
+    border-radius: 18px;
+
+    box-shadow:
+        0 18px 45px rgba(15, 13, 42, 0.28);
+
     transition:
-        background 0.3s ease,
-        border-color 0.3s ease,
-        transform 0.3s ease,
-        box-shadow 0.3s ease;
+        transform 0.35s ease,
+        border-color 0.35s ease,
+        box-shadow 0.35s ease;
 }
 
 
-/* =========================================
-   OPTION HOVER
-   ========================================= */
-
-.analysis-page .option:hover {
-    background: rgba(255, 255, 255, 0.12);
-
-    border-color: #e9d5ff;
-
-    transform: translateY(-2px);
-
-    box-shadow:
-        0 0 20px rgba(255, 255, 255, 0.18);
-}
-
-
-/* =========================================
-   SELECTED OPTION
-   ========================================= */
-
-.analysis-page .option.selected {
-    background: rgba(168, 85, 247, 0.30);
-
-    border-color: #e9d5ff;
-
-    box-shadow:
-        -10px 0 28px rgba(126, 34, 206, 0.65),
-        10px 0 28px rgba(126, 34, 206, 0.65),
-        0 0 35px rgba(168, 85, 247, 0.35);
-
-    animation:
-        purpleGlow 1.4s ease-in-out infinite alternate;
-}
-
-
-/* =========================================
-   LIGHT FROM BOTH SIDES
-   ========================================= */
-
-.analysis-page .option.selected::before,
-.analysis-page .option.selected::after {
+body:has(#home) .feature-card::before {
 
     content: "";
 
     position: absolute;
 
-    top: 15%;
-    bottom: 15%;
+    width: 190px;
 
-    width: 4px;
+    height: 190px;
 
-    border-radius: 20px;
+    top: -110px;
 
-    background: #ffffff;
+    right: -80px;
+
+    background: #bb7cef;
+
+    border-radius: 50%;
+
+    filter: blur(55px);
+
+    opacity: 0.22;
+}
+
+
+body:has(#home) .feature-card::after {
+
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+
+    top: 20%;
+
+    width: 3px;
+
+    height: 60%;
+
+    border-radius: 10px;
+
+    background: #c084fc;
 
     box-shadow:
-        0 0 8px #e9d5ff,
-        0 0 18px #c084fc,
-        0 0 30px #a855f7,
-        0 0 45px #7e22ce;
+        0 0 12px #c084fc,
+        0 0 25px #a855f7;
 
-    animation:
-        sideLight 1s ease-in-out infinite alternate;
+    opacity: 0;
+
+    transition: opacity 0.3s ease;
 }
 
 
-.analysis-page .option.selected::before {
-    left: 0;
+body:has(#home) .feature-card:hover {
+
+    transform: translateY(-8px);
+
+    border-color: rgba(213, 164, 255, 0.70);
+
+    box-shadow:
+        0 22px 55px rgba(14, 10, 45, 0.40),
+        0 0 28px rgba(185, 120, 237, 0.22);
 }
 
 
-.analysis-page .option.selected::after {
-    right: 0;
+body:has(#home) .feature-card:hover::after {
+
+    opacity: 1;
 }
 
 
-/* =========================================
-   PURPLE GLOW ANIMATION
-   ========================================= */
+body:has(#home) .card-icon {
 
-@keyframes purpleGlow {
+    position: relative;
 
-    from {
-        box-shadow:
-            -5px 0 18px rgba(126, 34, 206, 0.35),
-            5px 0 18px rgba(126, 34, 206, 0.35);
-    }
+    z-index: 2;
 
-    to {
-        box-shadow:
-            -14px 0 35px rgba(126, 34, 206, 0.70),
-            14px 0 35px rgba(126, 34, 206, 0.70);
-    }
-}
+    width: 48px;
 
+    height: 48px;
 
-@keyframes sideLight {
+    display: flex;
 
-    from {
-        opacity: 0.35;
-    }
+    align-items: center;
 
-    to {
-        opacity: 1;
-    }
-}
-
-
-/* =========================================
-   NEXT BUTTON
-   ========================================= */
-
-.analysis-page .next-button {
-    width: 100%;
-
-    margin-top: 25px;
-
-    padding: 17px;
-
-    border: none;
-
-    border-radius: 13px;
+    justify-content: center;
 
     background:
         linear-gradient(135deg,
-            #6d28d9,
-            #a855f7,
-            #7e22ce);
+            #ffffff,
+            #dfc8ff);
 
-    color: white;
+    color: #50317d;
 
-    font-size: 17px;
-    font-weight: bold;
+    border-radius: 12px;
 
-    cursor: pointer;
+    font-size: 14px;
 
-    transition: 0.3s ease;
+    font-weight: 800;
 
     box-shadow:
-        0 5px 25px rgba(126, 34, 206, 0.45);
+        0 5px 18px rgba(207, 173, 255, 0.25);
 }
 
 
-.analysis-page .next-button:hover {
+body:has(#home) .feature-card h3 {
+
+    position: relative;
+
+    z-index: 2;
+
+    margin: 24px 0 10px;
+
+    color: #ffffff;
+
+    font-size: 25px;
+}
+
+
+body:has(#home) .feature-card>p {
+
+    position: relative;
+
+    z-index: 2;
+
+    margin: 0 0 22px;
+
+    color: rgba(255, 255, 255, 0.72);
+
+    font-size: 15px;
+}
+
+
+body:has(#home) .card-button {
+
+    position: relative;
+
+    z-index: 2;
+
+    display: inline-block;
+
+    padding: 10px 17px;
+
+    color: #ffffff;
+
+    background:
+        linear-gradient(100deg,
+            #70409f,
+            #a66bd1);
+
+    border-radius: 8px;
+
+    text-decoration: none;
+
+    font-size: 14px;
+
+    font-weight: 700;
+
+    transition: all 0.3s ease;
+}
+
+
+body:has(#home) .card-button:hover {
+
     transform: translateY(-2px);
 
     box-shadow:
-        0 8px 40px rgba(126, 34, 206, 0.75);
+        0 0 20px rgba(207, 164, 255, 0.45);
 }
 
 
-/* =========================================
+/* =========================================================
+   HOW IT WORKS
+   ========================================================= */
+
+body:has(#home) .how-it-works {
+
+    position: relative;
+
+    z-index: 1;
+
+    padding: 100px 7%;
+
+    background:
+        linear-gradient(180deg,
+            rgba(86, 101, 181, 0.42) 0%,
+            rgba(91, 91, 177, 0.46) 35%,
+            rgba(103, 78, 165, 0.50) 70%,
+            rgba(116, 75, 164, 0.55) 100%);
+}
+
+
+body:has(#home) .how-it-works .section-heading {
+
+    margin-bottom: 60px;
+}
+
+
+body:has(#home) .how-it-works .section-heading .small-title {
+
+    color: #f0dcff;
+}
+
+
+body:has(#home) .how-it-works .section-heading h2 {
+
+    color: #ffffff;
+}
+
+
+body:has(#home) .how-it-works .section-heading>p:last-child {
+
+    color: rgba(255, 255, 255, 0.75);
+}
+
+
+/* =========================================================
+   STEPS
+   ========================================================= */
+
+body:has(#home) .steps {
+
+    position: relative;
+
+    z-index: 2;
+
+    max-width: 1050px;
+
+    margin: 0 auto;
+
+    display: grid;
+
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 45px;
+}
+
+
+body:has(#home) .step {
+
+    padding: 10px;
+
+    border-top: 1px solid rgba(255, 255, 255, 0.22);
+
+    transition: all 0.3s ease;
+}
+
+
+body:has(#home) .step:hover {
+
+    border-top-color: rgba(238, 208, 255, 0.75);
+
+    transform: translateY(-4px);
+}
+
+
+body:has(#home) .step>span {
+
+    display: inline-block;
+
+    margin: 22px 0 15px;
+
+    color: #e5c8ff;
+
+    font-size: 14px;
+
+    font-weight: 800;
+
+    letter-spacing: 2px;
+}
+
+
+body:has(#home) .step h3 {
+
+    margin: 0 0 12px;
+
+    color: #ffffff;
+
+    font-size: 27px;
+}
+
+
+body:has(#home) .step p {
+
+    margin: 0;
+
+    color: rgba(255, 255, 255, 0.72);
+
+    font-size: 15px;
+}
+
+
+/* =========================================================
+   FOOTER
+   ========================================================= */
+
+body:has(#home) footer {
+
+    position: relative;
+
+    z-index: 1;
+
+    padding: 35px 20px;
+
+    text-align: center;
+
+    background:
+        linear-gradient(180deg,
+            #744ba4 0%,
+            #30204e 100%);
+
+    color: rgba(255, 255, 255, 0.72);
+}
+
+
+body:has(#home) footer p {
+
+    margin: 4px 0;
+}
+
+
+body:has(#home) footer p:first-child {
+
+    color: #ffffff;
+
+    font-weight: 700;
+}
+
+
+/* =========================================================
    MOBILE
-   ========================================= */
+   ========================================================= */
 
-@media (max-width: 600px) {
+@media (max-width: 800px) {
 
-    .analysis-page {
-        padding: 30px 15px;
+    body:has(#home) .navbar {
+
+        padding: 0 5%;
     }
 
-    .analysis-page .analysis-header h1 {
-        font-size: 30px;
+
+    body:has(#home) .nav-links {
+
+        gap: 14px;
     }
 
-    .analysis-page .analysis-header p {
-        font-size: 14px;
-    }
 
-    .analysis-page .question-card {
-        padding: 25px;
-    }
+    body:has(#home) .feature-cards {
 
-    .analysis-page .question-card h2 {
-        font-size: 22px;
-    }
-
-    .analysis-page .options {
         grid-template-columns: 1fr;
     }
 
-    .analysis-page::before {
-        font-size: 15px;
+
+    body:has(#home) .steps {
+
+        grid-template-columns: 1fr;
+
+        gap: 25px;
     }
 
-    .analysis-page::after {
-        font-size: 13px;
+
+    body:has(#home) .hero h1 {
+
+        font-size: 48px;
+    }
+}
+
+
+@media (max-width: 560px) {
+
+    body:has(#home) .brand span {
+
+        display: none;
+    }
+
+
+    body:has(#home) .nav-links a {
+
+        font-size: 12px;
+    }
+
+
+    body:has(#home) .hero {
+
+        min-height: 470px;
+    }
+
+
+    body:has(#home) .hero h1 {
+
+        font-size: 39px;
+    }
+
+
+    body:has(#home) .features,
+    body:has(#home) .how-it-works {
+
+        padding-left: 5%;
+
+        padding-right: 5%;
     }
 }
