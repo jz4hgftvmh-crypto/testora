@@ -964,12 +964,12 @@ body:has(.analysis-page) .next-button:active {
 
 /* =========================================================
    VIRTUAL INNOVATION LAB
-   MAIN PAGE CSS
+   MAIN PAGE ONLY
    ========================================================= */
 
 
 /* =========================================================
-   GENERAL
+   BODY + ONE CONTINUOUS GRADIENT
    ========================================================= */
 
 body:has(#home) {
@@ -986,13 +986,15 @@ body:has(#home) {
 
     background:
         linear-gradient(180deg,
-            #b47bd8 0%,
-            #9d69c7 18%,
-            #8059b5 38%,
-            #6859ad 58%,
-            #5870b8 78%,
-            #4b78c0 100%);
+            #b77cda 0%,
+            #a66dcc 18%,
+            #925fc1 35%,
+            #7d5ab7 52%,
+            #6b62b4 68%,
+            #5874bb 84%,
+            #4b7dc2 100%);
 }
+
 
 body:has(#home) * {
     box-sizing: border-box;
@@ -1004,6 +1006,7 @@ body:has(#home) * {
    ========================================================= */
 
 body:has(#home)::before {
+
     content:
         "✦        ★"
         "       ٭          ✦"
@@ -1041,12 +1044,15 @@ body:has(#home)::before {
         0 0 15px rgba(220, 190, 255, 0.7);
 
     animation:
-        starsDown 14s linear infinite,
-        starsTwinkle 2.8s ease-in-out infinite alternate;
+        starsDown 14s ease-in-out infinite,
+        starsTwinkle 3s ease-in-out infinite alternate;
 }
 
 
+/* SECOND STAR LAYER */
+
 body:has(#home)::after {
+
     content:
         "★          ٭"
         "      ✦             ★"
@@ -1081,15 +1087,19 @@ body:has(#home)::after {
         0 0 6px rgba(255, 255, 255, 0.8);
 
     animation:
-        starsUp 18s linear infinite,
+        starsUp 18s ease-in-out infinite,
         starsTwinkle2 4s ease-in-out infinite alternate;
 }
 
 
+/* =========================================================
+   STAR ANIMATIONS
+   ========================================================= */
+
 @keyframes starsDown {
 
     0% {
-        transform: translateY(-100px);
+        transform: translateY(-80px);
     }
 
     50% {
@@ -1097,7 +1107,7 @@ body:has(#home)::after {
     }
 
     100% {
-        transform: translateY(-100px);
+        transform: translateY(-80px);
     }
 }
 
@@ -1222,7 +1232,7 @@ body:has(#home) .nav-links {
 
 body:has(#home) .nav-links a {
 
-    color: rgba(255, 255, 255, 0.85);
+    color: rgba(255, 255, 255, 0.88);
 
     text-decoration: none;
 
@@ -1258,18 +1268,15 @@ body:has(#home) .hero {
 
     display: flex;
 
-    justify-content: center;
-
     align-items: center;
+
+    justify-content: center;
 
     text-align: center;
 
     padding: 70px 20px 90px;
 
-    background:
-        radial-gradient(circle at 50% 25%,
-            rgba(239, 210, 255, 0.30),
-            transparent 38%);
+    background: transparent;
 }
 
 
@@ -1287,7 +1294,7 @@ body:has(#home) .hero .small-title {
 
     margin: 0 0 14px;
 
-    color: #f2dcff;
+    color: #f3ddff;
 
     font-size: 13px;
 
@@ -1319,11 +1326,15 @@ body:has(#home) .hero-description {
 
     margin: 28px auto 34px;
 
-    color: rgba(255, 255, 255, 0.86);
+    color: rgba(255, 255, 255, 0.88);
 
     font-size: 17px;
 }
 
+
+/* =========================================================
+   PRIMARY BUTTON
+   ========================================================= */
 
 body:has(#home) .primary-button {
 
@@ -1338,7 +1349,7 @@ body:has(#home) .primary-button {
             #70409f,
             #a96bd3);
 
-    border: 1px solid rgba(255, 255, 255, 0.28);
+    border: 1px solid rgba(255, 255, 255, 0.30);
 
     border-radius: 10px;
 
@@ -1360,7 +1371,7 @@ body:has(#home) .primary-button:hover {
 
     box-shadow:
         0 14px 35px rgba(38, 15, 70, 0.45),
-        0 0 28px rgba(220, 174, 255, 0.5);
+        0 0 30px rgba(220, 174, 255, 0.55);
 }
 
 
@@ -1376,11 +1387,7 @@ body:has(#home) .features {
 
     padding: 95px 7%;
 
-    background:
-        linear-gradient(180deg,
-            rgba(128, 84, 178, 0.20) 0%,
-            rgba(103, 83, 169, 0.34) 50%,
-            rgba(86, 101, 181, 0.42) 100%);
+    background: transparent;
 }
 
 
@@ -1399,6 +1406,12 @@ body:has(#home) .section-heading {
 body:has(#home) .section-heading .small-title {
 
     color: #f0dcff;
+
+    font-size: 13px;
+
+    font-weight: 800;
+
+    letter-spacing: 4px;
 }
 
 
@@ -1529,11 +1542,11 @@ body:has(#home) .feature-card:hover {
 
     transform: translateY(-8px);
 
-    border-color: rgba(213, 164, 255, 0.70);
+    border-color: rgba(213, 164, 255, 0.75);
 
     box-shadow:
         0 22px 55px rgba(14, 10, 45, 0.40),
-        0 0 28px rgba(185, 120, 237, 0.22);
+        0 0 28px rgba(185, 120, 237, 0.30);
 }
 
 
@@ -1542,6 +1555,10 @@ body:has(#home) .feature-card:hover::after {
     opacity: 1;
 }
 
+
+/* =========================================================
+   CARD ICON
+   ========================================================= */
 
 body:has(#home) .card-icon {
 
@@ -1655,12 +1672,7 @@ body:has(#home) .how-it-works {
 
     padding: 100px 7%;
 
-    background:
-        linear-gradient(180deg,
-            rgba(86, 101, 181, 0.42) 0%,
-            rgba(91, 91, 177, 0.46) 35%,
-            rgba(103, 78, 165, 0.50) 70%,
-            rgba(116, 75, 164, 0.55) 100%);
+    background: transparent;
 }
 
 
@@ -1669,28 +1681,6 @@ body:has(#home) .how-it-works .section-heading {
     margin-bottom: 60px;
 }
 
-
-body:has(#home) .how-it-works .section-heading .small-title {
-
-    color: #f0dcff;
-}
-
-
-body:has(#home) .how-it-works .section-heading h2 {
-
-    color: #ffffff;
-}
-
-
-body:has(#home) .how-it-works .section-heading>p:last-child {
-
-    color: rgba(255, 255, 255, 0.75);
-}
-
-
-/* =========================================================
-   STEPS
-   ========================================================= */
 
 body:has(#home) .steps {
 
@@ -1714,7 +1704,7 @@ body:has(#home) .step {
 
     padding: 10px;
 
-    border-top: 1px solid rgba(255, 255, 255, 0.22);
+    border-top: 1px solid rgba(255, 255, 255, 0.25);
 
     transition: all 0.3s ease;
 }
@@ -1722,7 +1712,7 @@ body:has(#home) .step {
 
 body:has(#home) .step:hover {
 
-    border-top-color: rgba(238, 208, 255, 0.75);
+    border-top-color: rgba(238, 208, 255, 0.80);
 
     transform: translateY(-4px);
 }
@@ -1779,9 +1769,7 @@ body:has(#home) footer {
     text-align: center;
 
     background:
-        linear-gradient(180deg,
-            #744ba4 0%,
-            #30204e 100%);
+        rgba(35, 25, 61, 0.72);
 
     color: rgba(255, 255, 255, 0.72);
 }
