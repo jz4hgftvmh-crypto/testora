@@ -1,0 +1,286 @@
+/* =========================================
+   WATER FILTRATION ANIMATION
+   ========================================= */
+
+.filtration-scene {
+    position: relative;
+    width: 100%;
+    height: 430px;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+
+/* =========================================
+   WATER TANK
+   ========================================= */
+
+.water-tank {
+    position: absolute;
+    top: 25px;
+    left: 50%;
+    transform: translateX(-50%);
+
+    width: 245px;
+    height: 105px;
+
+    border: 2px solid rgba(210, 190, 255, 0.35);
+    border-radius: 18px;
+
+    background: rgba(255, 255, 255, 0.035);
+
+    box-shadow:
+        inset 0 0 25px rgba(120, 70, 220, 0.08),
+        0 0 20px rgba(120, 70, 220, 0.12);
+
+    overflow: hidden;
+}
+
+
+/* الماء المتسخ */
+
+.dirty-water {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+
+    width: 100%;
+    height: 82%;
+
+    background:
+        linear-gradient(180deg,
+            rgba(110, 105, 145, 0.72),
+            rgba(80, 70, 115, 0.82));
+
+    transition:
+        background 0.4s ease,
+        height 0.4s ease;
+}
+
+
+/* =========================================
+   WATER DROPS
+   ========================================= */
+
+.water-stream {
+    position: absolute;
+
+    top: 127px;
+    left: 50%;
+
+    width: 8px;
+    height: 75px;
+
+    transform: translateX(-50%);
+
+    border-radius: 20px;
+
+    background:
+        linear-gradient(to bottom,
+            rgba(150, 210, 255, 0.85),
+            rgba(110, 155, 255, 0.4));
+
+    box-shadow:
+        0 0 12px rgba(120, 160, 255, 0.35);
+}
+
+
+/* =========================================
+   FILTER BODY
+   ========================================= */
+
+.filter-body {
+    position: absolute;
+
+    top: 200px;
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    width: 245px;
+    min-height: 135px;
+
+    border-radius: 16px;
+
+    border: 2px solid rgba(210, 190, 255, 0.28);
+
+    background:
+        rgba(255, 255, 255, 0.035);
+
+    box-shadow:
+        0 0 25px rgba(110, 65, 210, 0.12);
+
+    overflow: hidden;
+}
+
+
+/* =========================================
+   FILTER LAYERS
+   ========================================= */
+
+.filter-layer {
+    width: 100%;
+
+    border-bottom:
+        1px solid rgba(255, 255, 255, 0.14);
+
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    font-size: 10px;
+    font-weight: 700;
+
+    letter-spacing: 1.5px;
+
+    color: rgba(255, 255, 255, 0.72);
+
+    transition:
+        height 0.4s ease,
+        opacity 0.4s ease;
+}
+
+
+/* رمل */
+
+.filter-sand {
+    height: 34px;
+
+    background:
+        linear-gradient(90deg,
+            #c8b68e,
+            #e1d0a8,
+            #b9a477);
+}
+
+
+/* فحم */
+
+.filter-charcoal {
+    height: 34px;
+
+    background:
+        linear-gradient(90deg,
+            #37333f,
+            #58515f,
+            #2d2934);
+}
+
+
+/* حصى */
+
+.filter-gravel {
+    height: 34px;
+
+    background:
+        linear-gradient(90deg,
+            #807d87,
+            #aaa6b0,
+            #69656f);
+}
+
+
+/* =========================================
+   CLEAN WATER
+   ========================================= */
+
+.clean-water {
+    position: absolute;
+
+    top: 338px;
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    width: 150px;
+    height: 65px;
+
+    border-radius: 0 0 22px 22px;
+
+    background:
+        linear-gradient(180deg,
+            rgba(160, 220, 255, 0.55),
+            rgba(90, 150, 255, 0.8));
+
+    border:
+        2px solid rgba(180, 220, 255, 0.35);
+
+    box-shadow:
+        0 0 20px rgba(100, 170, 255, 0.25);
+
+    transition:
+        background 0.5s ease,
+        box-shadow 0.5s ease;
+}
+
+
+/* =========================================
+   PARTICLES
+   ========================================= */
+
+.dirt-particle {
+    position: absolute;
+
+    width: 6px;
+    height: 6px;
+
+    border-radius: 50%;
+
+    background: #5d5268;
+
+    box-shadow:
+        0 0 5px rgba(70, 50, 90, 0.5);
+
+    transition:
+        top 0.8s ease,
+        opacity 0.8s ease;
+}
+
+
+/* =========================================
+   LABEL
+   ========================================= */
+
+.filtration-label {
+    position: absolute;
+
+    top: 5px;
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    font-size: 10px;
+
+    font-weight: 700;
+
+    letter-spacing: 2px;
+
+    color: rgba(220, 205, 255, 0.7);
+
+    white-space: nowrap;
+}
+
+
+/* =========================================
+   WATER RESULT
+   ========================================= */
+
+.filtration-result {
+    position: absolute;
+
+    bottom: 5px;
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    font-size: 11px;
+
+    color: rgba(210, 225, 255, 0.8);
+
+    letter-spacing: 1px;
+
+    white-space: nowrap;
+}

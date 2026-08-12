@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Virtual Innovation Lab</title>
+
+    <link rel="stylesheet" href="lab.css">
+    <link rel="stylesheet" href="pendulum.css">
+    <link rel="stylesheet" href="filtration.css">
+    <link rel="stylesheet" href="solar.css">
+
+<body>
+
+    <!-- Background Stars -->
+    <div class="stars">
+        <span>★</span>
+        <span>✦</span>
+        <span>✧</span>
+        <span>★</span>
+        <span>✦</span>
+        <span>✧</span>
+        <span>★</span>
+        <span>✦</span>
+        <span>★</span>
+        <span>✧</span>
+        <span>✦</span>
+        <span>★</span>
+    </div>
+
+
+    <!-- Navigation -->
+    <nav class="navbar">
+
+        <span>Virtual Innovation Lab</span>
+        </div>
+
+        <a href="index.html">Home</a>
+
+    </nav>
+
+
+    <!-- Main Lab -->
+    <main class="lab-page">
+
+        <section class="lab-header">
+
+            <p class="small-title">VIRTUAL LAB</p>
+
+            <h1>Explore your experiment.</h1>
+
+            <p>
+                Choose an experiment and change its variables
+                to see how they affect the results.
+            </p>
+
+        </section>
+
+
+        <!-- Experiment Selection -->
+        <section class="experiment-selector">
+
+            <h2>Choose an Experiment</h2>
+
+            <div class="experiment-buttons">
+
+                <button class="experiment-button active" data-experiment="physics">
+                    ⚡ Physics Experiment
+                </button>
+
+                <button class="experiment-button" data-experiment="water">
+                    💧 Water Filtration
+                </button>
+
+                <button class="experiment-button" data-experiment="solar">
+                    ☀ Solar Energy
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- Experiment Area -->
+        <section class="experiment-card">
+
+
+            <!-- Physics -->
+            <div class="experiment-content active" id="physics">
+
+                <div class="experiment-title">
+
+                    <p class="experiment-label">
+                        PHYSICS
+                    </p>
+
+                    <h2>Pendulum Experiment</h2>
+
+                    <p>
+                        Change the force, mass, angle and rope length
+                        and observe how the result changes.
+                    </p>
+
+                </div>
+
+
+                <div class="controls">
+
+                    <div class="control">
+
+                        <div class="control-top">
+                            <label>Force</label>
+                            <span id="forceValue">50 N</span>
+                        </div>
+
+                        <input type="range" id="force" min="0" max="100" value="50">
+
+                    </div>
+
+
+                    <div class="control">
+
+                        <div class="control-top">
+                            <label>Mass</label>
+                            <span id="massValue">5 kg</span>
+                        </div>
+
+                        <input type="range" id="mass" min="1" max="20" value="5">
+
+                    </div>
+
+
+                    <div class="control">
+
+                        <div class="control-top">
+                            <label>Angle</label>
+                            <span id="angleValue">45°</span>
+                        </div>
+
+                        <input type="range" id="angle" min="0" max="90" value="45">
+
+                    </div>
+
+
+                    <div class="control">
+
+                        <div class="control-top">
+                            <label>Rope Length</label>
+                            <span id="lengthValue">2 m</span>
+                        </div>
+
+                        <input type="range" id="length" min="1" max="5" value="2">
+
+                    </div>
+
+                </div>
+
+
+                <div class="result-box">
+
+                    <p>Estimated Result</p>
+
+                    <h3 id="physicsResult">
+                        10.00 m/s²
+                    </h3>
+
+                    <span>
+                        Calculated from your selected variables.
+                    </span>
+
+                </div>
+
+
+                <!-- Animation Placeholder -->
+                <div class="animation-area">
+
+                    <div class="animation-placeholder">
+                        Physics Animation
+                    </div>
+
+                    <p>
+                        Animation will appear here later.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- Water -->
+            <div class="experiment-content" id="water">
+
+                <div class="experiment-title">
+
+                    <p class="experiment-label">
+                        WATER FILTRATION
+                    </p>
+
+                    <h2>Water Filtration Experiment</h2>
+
+                    <p>
+                        Change the filter layers, water speed and
+                        contamination level to estimate the water quality.
+                    </p>
+
+                </div>
+
+
+                <div class="controls">
+
+                    <div class="control">
+
+                        <div class="control-top">
+                            <label>Filter Thickness</label>
+                            <span id="filterValue">50%</span>
+                        </div>
+
+                        <input type="range" id="filter" min="0" max="100" value="50">
+
+                    </div>
+
+
+                    <div class="control">
+
+                        <div class="control-top">
+                            <label>Water Speed</label>
+                            <span id="waterSpeedValue">50%</span>
+                        </div>
+
+                        <input type="range" id="waterSpeed" min="0" max="100" value="50">
+
+                    </div>
+
+
+                    <div class="control">
+
+                        <div class="control-top">
+                            <label>Contamination</label>
+                            <span id="contaminationValue">30%</span>
+                        </div>
+
+                        <input type="range" id="contamination" min="0" max="100" value="30">
+
+                    </div>
+
+
+                    <div class="control">
+
+                        <div class="control-top">
+                            <label>Filter Layers</label>
+                            <span id="layersValue">3</span>
+                        </div>
+
+                        <input type="range" id="layers" min="1" max="6" value="3">
+
+                    </div>
+
+                </div>
+
+
+                <div class="result-box">
+
+                    <p>Estimated Water Quality</p>
+
+                    <h3 id="waterResult">
+                        71%
+                    </h3>
+
+                    <span>
+                        Higher percentage means cleaner water.
+                    </span>
+
+                </div>
+
+
+                <div class="animation-area">
+
+                    <div class="animation-placeholder">
+                        Water Filtration Animation
+                    </div>
+
+                    <p>
+                        Animation will appear here later.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- Solar -->
+            <div class="experiment-content" id="solar">
+
+                <div class="experiment-title">
+
+                    <p class="experiment-label">
+                        SOLAR ENERGY
+                    </p>
+
+                    <h2>Solar Energy Experiment</h2>
+
+                    <p>
+                        Change sunlight, panel angle, efficiency and
+                        sunlight hours to estimate the energy output.
+                    </p>
+
+                </div>
+
+
+                <div class="controls">
+
+                    <div class="control">
+
+                        <div class="control-top">
+                            <label>Sunlight Level</label>
+                            <span id="sunlightValue">50%</span>
+                        </div>
+
+                        <input type="range" id="sunlight" min="0" max="100" value="50">
+
+                    </div>
+
+
+                    <div class="control">
+
+                        <div class="control-top">
+                            <label>Panel Angle</label>
+                            <span id="panelAngleValue">45°</span>
+                        </div>
+
+                        <input type="range" id="panelAngle" min="0" max="90" value="45">
+
+                    </div>
+
+
+                    <div class="control">
+
+                        <div class="control-top">
+                            <label>Panel Efficiency</label>
+                            <span id="efficiencyValue">20%</span>
+                        </div>
+
+                        <input type="range" id="efficiency" min="5" max="40" value="20">
+
+                    </div>
+
+
+                    <div class="control">
+
+                        <div class="control-top">
+                            <label>Sunlight Hours</label>
+                            <span id="sunHoursValue">6 h</span>
+                        </div>
+
+                        <input type="range" id="sunHours" min="1" max="12" value="6">
+
+                    </div>
+
+                </div>
+
+
+                <div class="result-box">
+
+                    <p>Estimated Energy Output</p>
+
+                    <h3 id="solarResult">
+                        36 units
+                    </h3>
+
+                    <span>
+                        Estimated according to your selected variables.
+                    </span>
+
+                </div>
+
+
+                <div class="animation-area">
+
+                    <div class="animation-placeholder">
+                        Solar Panel Animation
+                    </div>
+
+                    <p>
+                        Animation will appear here later.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <script src="lab.js"></script>
+    <script src="pendulum.js"></script>
+    <script src="filtration.js"></script>
+    <script src="solar.js"></script>
+
+</html>
