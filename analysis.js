@@ -175,23 +175,24 @@ nextButton.addEventListener("click", function() {
     }
 
 });
-function showResults() {
+async function showResults() {
 
     optionsContainer.innerHTML = "";
 
-    questionTitle.textContent = "Your Financial Estimate";
+    questionTitle.textContent = "Analyzing Your Idea...";
 
-    questionNumber.textContent = "Analysis Complete";
+    questionNumber.textContent = "Please wait";
 
     nextButton.style.display = "none";
 
 
+    // آخر 3 إجابات خاصة بالحسابات المالية
     const unitCost = Number(
-        answers[answers.length - 3].replace("$", "")
+        answers[answers.length - 3].replace("$", "").replace(",", "")
     );
 
     const sellingPrice = Number(
-        answers[answers.length - 2].replace("$", "")
+        answers[answers.length - 2].replace("$", "").replace(",", "")
     );
 
     const monthlySales = Number(
@@ -200,14 +201,11 @@ function showResults() {
 
 
     const revenue = sellingPrice * monthlySales;
-
     const cost = unitCost * monthlySales;
-
     const profit = revenue - cost;
 
 
     const result = document.createElement("div");
-
     result.className = "result-message";
 
     result.innerHTML = `
@@ -227,9 +225,88 @@ function showResults() {
             Estimated Gross Profit:
             <strong>$${profit.toLocaleString()}</strong>
         </p>
+
+        <hr>
+
+        <h3>AI Analysis</h3>
+
+        <p id="ai-analysis">
+            Analyzing your idea...
+        </p>
     `;
 
     optionsContainer.appendChild(result);
+
+
+    // نجمع الأسئلة ويا الإجابات
+    const ideaData = questions.map(function(question, index) {
+
+        return `${question.question}
+Answer: ${answers[index]}`;
+
+    }).join("\n\n");
+
+
+    const message = `
+Analyze this project idea based on the user's answers.
+
+${ideaData}
+
+Financial Estimate:
+Monthly Revenue: $${revenue}
+Monthly Cost: $${cost}
+Monthly Gross Profit: $${profit}
+
+Give a clear and simple analysis containing:
+
+1. Idea Summary
+2. Strengths
+3. Possible Challenges
+4. Financial Feasibility
+5. Suggestions for Improvement
+6. Final Evaluation
+
+Keep the answer concise and understandable.
+`;
+
+
+    try {
+
+        const response = await fetch("http://localhost:3000/ask", {
+
+            method: "POST",
+
+            headers: {
+                "Content-Type": "application/json"
+            },
+
+            body: JSON.stringify({
+                message: message
+            })
+
+        });
+
+
+        const data = await response.json();
+
+        document.getElementById("ai-analysis").textContent =
+            data.answer;
+
+        questionTitle.textContent = "Your Idea Analysis";
+
+        questionNumber.textContent = "Analysis Complete";
+
+
+    } catch (error) {
+
+        console.error(error);
+
+        document.getElementById("ai-analysis").textContent =
+            "Could not connect to the AI server.";
+
+        questionTitle.textContent = "Analysis Error";
+
+    }
 }
 
 showQuestion();
