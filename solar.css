@@ -1,5 +1,5 @@
 /* =========================================
-   SOLAR ENERGY ANIMATION
+   SOLAR ENERGY ANIMATION 
    ========================================= */
 
 .solar-scene {
@@ -14,13 +14,13 @@
 
     background:
         radial-gradient(circle at 50% 12%,
-            rgba(190, 145, 255, 0.18),
+            rgba(120, 190, 230, 0.18),
             transparent 35%);
 }
 
 
 /* =========================================
-   SUN
+   SUN 
    ========================================= */
 
 .solar-sun {
@@ -52,7 +52,7 @@
 
 
 /* =========================================
-   SUN RAYS
+   SUN RAYS 
    ========================================= */
 
 .solar-ray {
@@ -65,7 +65,7 @@
     background:
         linear-gradient(90deg,
             rgba(255, 220, 120, 0.7),
-            rgba(170, 130, 255, 0));
+            rgba(75, 170, 220, 0));
 
     pointer-events: none;
 
@@ -75,7 +75,7 @@
 
 
 /* =========================================
-   CLOUD
+   CLOUD 
    ========================================= */
 
 .solar-cloud {
@@ -138,7 +138,7 @@
 
 
 /* =========================================
-   PANEL
+   PANEL 
    ========================================= */
 
 .solar-panel {
@@ -157,37 +157,37 @@
 
     border-radius: 8px;
 
-    border: 5px solid #27213b;
+    border: 5px solid #172f4d;
 
     background:
         linear-gradient(90deg,
             transparent 24%,
-            rgba(190, 160, 255, 0.28) 25%,
+            rgba(150, 205, 235, 0.28) 25%,
             transparent 26%,
             transparent 49%,
-            rgba(190, 160, 255, 0.28) 50%,
+            rgba(150, 205, 235, 0.28) 50%,
             transparent 51%,
             transparent 74%,
-            rgba(190, 160, 255, 0.28) 75%,
+            rgba(150, 205, 235, 0.28) 75%,
             transparent 76%),
         linear-gradient(0deg,
             transparent 24%,
-            rgba(190, 160, 255, 0.28) 25%,
+            rgba(150, 205, 235, 0.28) 25%,
             transparent 26%,
             transparent 49%,
-            rgba(190, 160, 255, 0.28) 50%,
+            rgba(150, 205, 235, 0.28) 50%,
             transparent 51%,
             transparent 74%,
-            rgba(190, 160, 255, 0.28) 75%,
+            rgba(150, 205, 235, 0.28) 75%,
             transparent 76%),
         linear-gradient(135deg,
-            #34266a,
-            #5540a0,
-            #292052);
+            #07599b,
+            #4d9ed0,
+            #29427f);
 
     box-shadow:
-        0 0 18px rgba(125, 80, 240, 0.28),
-        inset 0 0 20px rgba(150, 100, 255, 0.18);
+        0 0 18px rgba(50, 145, 205, 0.28),
+        inset 0 0 20px rgba(90, 175, 225, 0.18);
 
     transition:
         transform 0.5s ease,
@@ -196,7 +196,7 @@
 
 
 /* =========================================
-   PANEL CELLS
+   PANEL CELLS 
    ========================================= */
 
 .solar-panel::before {
@@ -209,7 +209,7 @@
         repeating-linear-gradient(90deg,
             transparent 0,
             transparent 48px,
-            rgba(210, 190, 255, 0.2) 49px,
+            rgba(180, 220, 240, 0.2) 49px,
             transparent 50px);
 
     pointer-events: none;
@@ -217,7 +217,7 @@
 
 
 /* =========================================
-   ENERGY BEAMS
+   ENERGY BEAMS 
    ========================================= */
 
 .energy-beam {
@@ -232,7 +232,7 @@
         linear-gradient(to bottom,
             rgba(255, 220, 120, 0),
             rgba(255, 220, 120, 0.8),
-            rgba(150, 100, 255, 0.2));
+            rgba(65, 155, 215, 0.2));
 
     transform-origin: top;
 
@@ -245,7 +245,7 @@
 
 
 /* =========================================
-   ENERGY OUTPUT
+   ENERGY OUTPUT 
    ========================================= */
 
 .solar-output {
@@ -265,15 +265,15 @@
 
     letter-spacing: 1.5px;
 
-    color: #e6d9ff;
+    color: #d8f1ff;
 
     text-shadow:
-        0 0 12px rgba(150, 90, 255, 0.6);
+        0 0 12px rgba(50, 145, 205, 0.6);
 }
 
 
 /* =========================================
-   GLOW UNDER PANEL
+   GLOW UNDER PANEL 
    ========================================= */
 
 .solar-glow {
@@ -290,7 +290,7 @@
     border-radius: 50%;
 
     background:
-        rgba(130, 75, 230, 0.15);
+        rgba(45, 145, 210, 0.15);
 
     filter: blur(22px);
 
@@ -300,7 +300,7 @@
 
 
 /* =========================================
-   ANIMATION
+   ANIMATION 
    ========================================= */
 
 @keyframes energyBeam {

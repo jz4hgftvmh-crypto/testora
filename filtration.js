@@ -5,9 +5,7 @@ document.addEventListener("DOMContentLoaded", function () {
     ========================================= */
 
     const animationArea =
-        document.querySelector(
-            "#water .animation-area"
-        );
+        document.querySelector("#water .animation-area");
 
 
     if (!animationArea) {
@@ -16,7 +14,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
     /* =========================================
-       CLEAR PLACEHOLDER ONLY
+       CLEAR PLACEHOLDER
     ========================================= */
 
     animationArea.innerHTML = "";
@@ -65,9 +63,7 @@ document.addEventListener("DOMContentLoaded", function () {
         "dirty-water";
 
 
-    tank.appendChild(
-        dirtyWater
-    );
+    tank.appendChild(dirtyWater);
 
 
     /* =========================================
@@ -92,47 +88,59 @@ document.addEventListener("DOMContentLoaded", function () {
         "filter-body";
 
 
-    const sand =
-        document.createElement("div");
+    /* =========================================
+       FILTER LAYERS
+    ========================================= */
 
-    sand.className =
-        "filter-layer filter-sand";
-
-    sand.textContent =
-        "SAND";
-
-
-    const charcoal =
-        document.createElement("div");
-
-    charcoal.className =
-        "filter-layer filter-charcoal";
-
-    charcoal.textContent =
-        "CHARCOAL";
+    const layerNames = [
+        "SAND",
+        "CHARCOAL",
+        "GRAVEL",
+        "FIBER",
+        "MESH",
+        "COTTON"
+    ];
 
 
-    const gravel =
-        document.createElement("div");
+    const layerColors = [
+        "linear-gradient(90deg, #c8b68e, #e1d0a8, #b9a477)",
+        "linear-gradient(90deg, #37333f, #58515f, #2d2934)",
+        "linear-gradient(90deg, #807d87, #aaa6b0, #69656f)",
+        "linear-gradient(90deg, #b7d0dc, #d9edf5, #9dbdc9)",
+        "linear-gradient(90deg, #717986, #9ba3af, #626a77)",
+        "linear-gradient(90deg, #d7d7d7, #f0f0f0, #bcbcbc)"
+    ];
 
-    gravel.className =
-        "filter-layer filter-gravel";
 
-    gravel.textContent =
-        "GRAVEL";
+    const filterLayers = [];
 
 
-    filterBody.appendChild(
-        sand
-    );
+    for (let i = 0; i < 6; i++) {
 
-    filterBody.appendChild(
-        charcoal
-    );
+        const layer =
+            document.createElement("div");
 
-    filterBody.appendChild(
-        gravel
-    );
+        layer.className =
+            "filter-layer";
+
+
+        layer.textContent =
+            layerNames[i];
+
+
+        layer.style.background =
+            layerColors[i];
+
+
+        layer.style.height =
+            "30px";
+
+
+        filterBody.appendChild(layer);
+
+
+        filterLayers.push(layer);
+    }
 
 
     /* =========================================
@@ -177,7 +185,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
     /* =========================================
-       GET VARIABLES FROM EXISTING HTML
+       GET CONTROLS
     ========================================= */
 
     const filter =
@@ -191,6 +199,22 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const layers =
         document.getElementById("layers");
+
+
+    const filterValue =
+        document.getElementById("filterValue");
+
+    const waterSpeedValue =
+        document.getElementById("waterSpeedValue");
+
+    const contaminationValue =
+        document.getElementById("contaminationValue");
+
+    const layersValue =
+        document.getElementById("layersValue");
+
+    const waterResult =
+        document.getElementById("waterResult");
 
 
     if (
@@ -244,14 +268,9 @@ document.addEventListener("DOMContentLoaded", function () {
             size + "px";
 
 
-        tank.appendChild(
-            particle
-        );
+        tank.appendChild(particle);
 
-
-        particles.push(
-            particle
-        );
+        particles.push(particle);
     }
 
 
@@ -261,30 +280,46 @@ document.addEventListener("DOMContentLoaded", function () {
 
     function updateFiltration() {
 
-        const filterValue =
+        const filterValueNumber =
             Number(filter.value);
 
-        const speedValue =
+        const speedValueNumber =
             Number(waterSpeed.value);
 
-        const contaminationValue =
+        const contaminationValueNumber =
             Number(contamination.value);
 
-        const layersValue =
+        const layersValueNumber =
             Number(layers.value);
 
 
-        /* ---------------------------------------
-           CONTAMINATION
+        /* =====================================
+           UPDATE NUMBERS BESIDE SLIDERS
+        ===================================== */
 
-           كلما زادت الشوائب:
-           - لون الماء أغمق
-           - الجسيمات أكثر وضوحًا
-        --------------------------------------- */
+        filterValue.textContent =
+            filterValueNumber + "%";
+
+
+        waterSpeedValue.textContent =
+            speedValueNumber + "%";
+
+
+        contaminationValue.textContent =
+            contaminationValueNumber + "%";
+
+
+        layersValue.textContent =
+            layersValueNumber;
+
+
+        /* =====================================
+           CONTAMINATION
+        ===================================== */
 
         const dirtOpacity =
             0.2 +
-            (contaminationValue / 100) * 0.65;
+            (contaminationValueNumber / 100) * 0.65;
 
 
         dirtyWater.style.background =
@@ -299,86 +334,118 @@ document.addEventListener("DOMContentLoaded", function () {
             ")";
 
 
-        particles.forEach(
-            function (particle, index) {
+        filterLayers.forEach(
+            function (layer, index) {
 
-                const visibleLimit =
-                    Math.ceil(
-                        particleCount *
-                        (contaminationValue / 100)
+                if (index < layersValueNumber) {
+
+                    layer.style.setProperty(
+                        "display",
+                        "flex",
+                        "important"
                     );
 
+                    layer.style.setProperty(
+                        "opacity",
+                        "1",
+                        "important"
+                    );
 
-                if (index < visibleLimit) {
-
-                    particle.style.opacity =
-                        "0.9";
+                    layer.style.setProperty(
+                        "visibility",
+                        "visible",
+                        "important"
+                    );
 
                 } else {
 
-                    particle.style.opacity =
-                        "0.08";
+                    layer.style.setProperty(
+                        "display",
+                        "none",
+                        "important"
+                    );
+
+                    layer.style.setProperty(
+                        "opacity",
+                        "0",
+                        "important"
+                    );
+
+                    layer.style.setProperty(
+                        "visibility",
+                        "hidden",
+                        "important"
+                    );
+                }
+            }
+        );
+
+        /* =====================================
+           FILTER THICKNESS
+        ===================================== */
+
+        const layerScale =
+            0.75 +
+            (filterValueNumber / 100) * 0.5;
+
+
+        filterLayers.forEach(
+            function (layer) {
+
+                layer.style.height =
+                    (25 * layerScale) + "px";
+            }
+        );
+
+
+        /* =====================================
+           NUMBER OF ACTIVE LAYERS
+        ===================================== */
+
+        filterLayers.forEach(
+            function (layer, index) {
+
+                if (
+                    index <
+                    layersValueNumber
+                ) {
+
+                    layer.style.opacity =
+                        "1";
+
+                } else {
+
+                    layer.style.opacity =
+                        "0.12";
                 }
             }
         );
 
 
-        /* ---------------------------------------
-           FILTER THICKNESS
+        /* =====================================
+           WATER QUALITY
 
-           نستخدمها لتكبير طبقات الفلتر
-        --------------------------------------- */
+           DEFAULT:
 
-        const layerScale =
-            0.65 +
-            (filterValue / 100) * 0.7;
+           Filter = 50
+           Speed = 50
+           Contamination = 30
+           Layers = 3
 
-
-        sand.style.height =
-            (30 * layerScale) + "px";
-
-        charcoal.style.height =
-            (30 * layerScale) + "px";
-
-        gravel.style.height =
-            (30 * layerScale) + "px";
-
-
-        /* ---------------------------------------
-           NUMBER OF LAYERS
-        --------------------------------------- */
-
-        sand.style.opacity =
-            layersValue >= 1
-                ? "1"
-                : "0.15";
-
-
-        charcoal.style.opacity =
-            layersValue >= 2
-                ? "1"
-                : "0.15";
-
-
-        gravel.style.opacity =
-            layersValue >= 3
-                ? "1"
-                : "0.15";
-
-
-        /* ---------------------------------------
-           FILTRATION QUALITY
-
-           نعطي نتيجة بصرية ومنطقية
-        --------------------------------------- */
+           RESULT = 71%
+        ===================================== */
 
         let quality =
-            35
-            + filterValue * 0.3
-            + layersValue * 8
-            - contaminationValue * 0.25
-            - speedValue * 0.12;
+            56
+            + filterValueNumber * 0.30
+            + layersValueNumber * 5
+            - contaminationValueNumber * 0.25
+            - speedValueNumber * 0.15;
 
+
+        /* =====================================
+           KEEP RESULT BETWEEN 0 AND 100
+        ===================================== */
 
         quality =
             Math.max(
@@ -390,12 +457,13 @@ document.addEventListener("DOMContentLoaded", function () {
             );
 
 
-        /* ---------------------------------------
-           CLEAN WATER COLOR
+        const roundedQuality =
+            Math.round(quality);
 
-           كلما زادت الجودة:
-           الماي يصير أوضح
-        --------------------------------------- */
+
+        /* =====================================
+           CLEAN WATER COLOR
+        ===================================== */
 
         const blueOpacity =
             0.35 +
@@ -420,29 +488,35 @@ document.addEventListener("DOMContentLoaded", function () {
             ")";
 
 
+        /* =====================================
+           UPDATE RESULT
+        ===================================== */
+
+        waterResult.textContent =
+            roundedQuality + "%";
+
+
         result.textContent =
             "WATER QUALITY  " +
-            Math.round(quality) +
+            roundedQuality +
             "%";
 
 
-        /* ---------------------------------------
+        /* =====================================
            WATER SPEED
+        ===================================== */
 
-           السرعة تتحكم بسرعة حركة stream
-        --------------------------------------- */
-
-        const speed =
+        const animationSpeed =
             Math.max(
                 0.2,
                 1.8 -
-                speedValue / 100
+                speedValueNumber / 100
             );
 
 
         stream.style.animation =
             "waterFlow " +
-            speed +
+            animationSpeed +
             "s linear infinite";
     }
 
@@ -487,13 +561,11 @@ document.addEventListener("DOMContentLoaded", function () {
     `;
 
 
-    document.head.appendChild(
-        flowStyle
-    );
+    document.head.appendChild(flowStyle);
 
 
     /* =========================================
-       CONTINUOUS PARTICLE MOVEMENT
+       PARTICLE MOVEMENT
     ========================================= */
 
     let particleTime = 0;
@@ -565,15 +637,18 @@ document.addEventListener("DOMContentLoaded", function () {
         updateFiltration
     );
 
+
     waterSpeed.addEventListener(
         "input",
         updateFiltration
     );
 
+
     contamination.addEventListener(
         "input",
         updateFiltration
     );
+
 
     layers.addEventListener(
         "input",

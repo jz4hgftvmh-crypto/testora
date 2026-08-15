@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="pendulum.css">
     <link rel="stylesheet" href="filtration.css">
     <link rel="stylesheet" href="solar.css">
+    <link rel="stylesheet" href="business.css">
 
 <body>
 
@@ -78,6 +79,11 @@
                     ☀ Solar Energy
                 </button>
 
+                <!-- NEW -->
+                <button class="experiment-button" data-experiment="business">
+                    💼 Business & Investment
+                </button>
+
             </div>
 
         </section>
@@ -99,8 +105,8 @@
                     <h2>Pendulum Experiment</h2>
 
                     <p>
-                        Change the force, mass, angle and rope length
-                        and observe how the result changes.
+                        Change the force, mass, angle, rope length,
+                        gravity and damping and observe how the result changes.
                     </p>
 
                 </div>
@@ -108,59 +114,123 @@
 
                 <div class="controls">
 
+                    <!-- FORCE -->
                     <div class="control">
 
                         <div class="control-top">
+
                             <label>Force</label>
-                            <span id="forceValue">50 N</span>
+
+                            <span id="forceValue">
+                                50 N
+                            </span>
+
                         </div>
 
-                        <input type="range" id="force" min="0" max="100" value="50">
+                        <input type="range" id="force" min="0" max="100" value="50" step="1">
 
                     </div>
 
 
+                    <!-- MASS -->
                     <div class="control">
 
                         <div class="control-top">
+
                             <label>Mass</label>
-                            <span id="massValue">5 kg</span>
+
+                            <span id="massValue">
+                                5 kg
+                            </span>
+
                         </div>
 
-                        <input type="range" id="mass" min="1" max="20" value="5">
+                        <input type="range" id="mass" min="1" max="20" value="5" step="1">
 
                     </div>
 
 
+                    <!-- ANGLE -->
                     <div class="control">
 
                         <div class="control-top">
+
                             <label>Angle</label>
-                            <span id="angleValue">45°</span>
+
+                            <span id="angleValue">
+                                45°
+                            </span>
+
                         </div>
 
-                        <input type="range" id="angle" min="0" max="90" value="45">
+                        <input type="range" id="angle" min="0" max="90" value="45" step="1">
 
                     </div>
 
 
+                    <!-- ROPE LENGTH -->
                     <div class="control">
 
                         <div class="control-top">
+
                             <label>Rope Length</label>
-                            <span id="lengthValue">2 m</span>
+
+                            <span id="lengthValue">
+                                2.0 m
+                            </span>
+
                         </div>
 
-                        <input type="range" id="length" min="1" max="5" value="2">
+                        <input type="range" id="length" min="1" max="5" value="2" step="0.1">
+
+                    </div>
+
+
+                    <!-- GRAVITY -->
+                    <div class="control">
+
+                        <div class="control-top">
+
+                            <label>Gravity</label>
+
+                            <span id="gravityValue">
+                                9.81 m/s²
+                            </span>
+
+                        </div>
+
+                        <input type="range" id="gravity" min="1" max="20" value="9.81" step="0.01">
+
+                    </div>
+
+
+                    <!-- DAMPING -->
+                    <div class="control">
+
+                        <div class="control-top">
+
+                            <label>Damping</label>
+
+                            <span id="dampingValue">
+                                10%
+                            </span>
+
+                        </div>
+
+                        <input type="range" id="damping" min="0" max="100" value="10" step="1">
 
                     </div>
 
                 </div>
 
 
+                <!-- RESULT -->
+
                 <div class="result-box">
 
-                    <p>Estimated Result</p>
+                    <p>
+                        Estimated Result
+                    </p>
 
                     <h3 id="physicsResult">
                         10.00 m/s²
@@ -173,7 +243,8 @@
                 </div>
 
 
-                <!-- Animation Placeholder -->
+                <!-- ANIMATION -->
+
                 <div class="animation-area">
 
                     <div class="animation-placeholder">
@@ -187,9 +258,6 @@
                 </div>
 
             </div>
-
-
-
             <!-- Water -->
             <div class="experiment-content" id="water">
 
@@ -392,14 +460,372 @@
 
             </div>
 
-        </section>
 
-    </main>
+            <!-- =================================================
+     BUSINESS & INVESTMENT
+================================================= -->
+
+            <style>
+                /* ==========================================
+       BUSINESS RESULT BOX
+       ========================================== */
+
+                #business .result-box {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    justify-content: center;
+                    text-align: center;
+                }
+
+                /* ==========================================
+       BUDGET INFO INSIDE RESULT BOX
+       ========================================== */
+
+                #business .business-budget {
+                    width: 100%;
+                    margin-top: 22px;
+                    padding-top: 18px;
+                    border-top: 1px solid rgba(255, 255, 255, 0.15);
+
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    gap: 45px;
+
+                    position: static;
+                    left: auto;
+                    right: auto;
+                    bottom: auto;
+                    top: auto;
+                }
+
+                #business .budget-item {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    gap: 5px;
+                }
+
+                #business .budget-item span {
+                    font-size: 14px;
+                    opacity: 0.75;
+                }
+
+                #business .budget-item strong {
+                    font-size: 20px;
+                    font-weight: 700;
+                }
+
+                /* ==========================================
+       MOBILE
+       ========================================== */
+
+                @media (max-width: 700px) {
+
+                    #business .business-budget {
+                        flex-direction: column;
+                        gap: 15px;
+                    }
+
+                }
+            </style>
 
 
-    <script src="lab.js"></script>
-    <script src="pendulum.js"></script>
-    <script src="filtration.js"></script>
-    <script src="solar.js"></script>
+            <div class="experiment-content" id="business">
 
-</html>
+                <div class="experiment-title">
+
+                    <p class="experiment-label">
+                        BUSINESS & INVESTMENT
+                    </p>
+
+                    <h2>Business & Investment Experiment</h2>
+
+                    <p>
+                        Adjust your business variables and see how
+                        they affect the project's budget and profit.
+                    </p>
+
+                </div>
+
+
+                <!-- ================= CONTROLS ================= -->
+
+                <div class="controls">
+
+
+                    <!-- INITIAL CAPITAL -->
+
+                    <div class="control">
+
+                        <div class="control-top">
+
+                            <label>
+                                Initial Capital
+                            </label>
+
+                            <span id="investmentValue">
+                                $30,000
+                            </span>
+
+                        </div>
+
+                        <input type="range" id="investment" min="5000" max="100000" value="30000" step="1000">
+
+                    </div>
+
+
+
+                    <!-- STARTUP COST -->
+
+                    <div class="control">
+
+                        <div class="control-top">
+
+                            <label>
+                                Startup Cost
+                            </label>
+
+                            <span id="startupValue">
+                                $10,000
+                            </span>
+
+                        </div>
+
+                        <input type="range" id="startupCost" min="1000" max="50000" value="10000" step="1000">
+
+                    </div>
+
+
+
+                    <!-- CUSTOMERS -->
+
+                    <div class="control">
+
+                        <div class="control-top">
+
+                            <label>
+                                Customers
+                            </label>
+
+                            <span id="customersValue">
+                                100
+                            </span>
+
+                        </div>
+
+                        <input type="range" id="customers" min="10" max="2000" value="100" step="10">
+
+                    </div>
+
+
+
+                    <!-- PRODUCT PRICE -->
+
+                    <div class="control">
+
+                        <div class="control-top">
+
+                            <label>
+                                Product Price
+                            </label>
+
+                            <span id="priceValue">
+                                $20
+                            </span>
+
+                        </div>
+
+                        <input type="range" id="productPrice" min="1" max="500" value="20" step="1">
+
+                    </div>
+
+
+
+                    <!-- OPERATING COST -->
+
+                    <div class="control">
+
+                        <div class="control-top">
+
+                            <label>
+                                Operating Costs
+                            </label>
+
+                            <span id="costValue">
+                                $4,000
+                            </span>
+
+                        </div>
+
+                        <input type="range" id="operatingCost" min="500" max="30000" value="4000" step="500">
+
+                    </div>
+
+
+
+                    <!-- MARKETING -->
+
+                    <div class="control">
+
+                        <div class="control-top">
+
+                            <label>
+                                Marketing Budget
+                            </label>
+
+                            <span id="marketingValue">
+                                $1,500
+                            </span>
+
+                        </div>
+
+                        <input type="range" id="marketing" min="0" max="20000" value="1500" step="500">
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- ================= RESULT ================= -->
+
+                <div class="result-box">
+
+                    <p>
+                        Estimated Operating Profit
+                    </p>
+
+                    <h3 id="businessResult">
+                        $-3,500
+                    </h3>
+
+                    <span id="businessStatus">
+                        Calculated from your selected variables.
+                    </span>
+
+
+                    <!-- ================= BUDGET INFO ================= -->
+
+                    <div class="business-budget">
+
+                        <div class="budget-item">
+
+                            <span>
+                                Remaining Capital
+                            </span>
+
+                            <strong id="remainingCapital">
+                                $14,500
+                            </strong>
+
+                        </div>
+
+
+                        <div class="budget-item">
+
+                            <span>
+                                Total Startup & Expenses
+                            </span>
+
+                            <strong id="totalExpenses">
+                                $15,500
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- ================= ANIMATION ================= -->
+
+                <div class="animation-area">
+
+                    <div class="business-scene">
+
+                        <div class="business-glow"></div>
+
+
+                        <div class="business-building">
+
+                            <div class="business-sign">
+                                BUSINESS
+                            </div>
+
+                            <div class="business-window one"></div>
+
+                            <div class="business-window two"></div>
+
+                            <div class="business-window three"></div>
+
+                            <div class="business-window four"></div>
+
+                            <div class="business-door"></div>
+
+                        </div>
+
+
+                        <!-- CUSTOMERS -->
+
+                        <div class="business-customer" style="--delay: 0s;"></div>
+
+                        <div class="business-customer" style="--delay: 1s;"></div>
+
+                        <div class="business-customer" style="--delay: 2s;"></div>
+
+
+                        <!-- MONEY -->
+
+                        <div class="business-money" style="--delay: 0s; --x: -40px;">
+                            💰
+                        </div>
+
+                        <div class="business-money" style="--delay: .7s; --x: 30px;">
+                            💵
+                        </div>
+
+                        <div class="business-money" style="--delay: 1.4s; --x: 60px;">
+                            💰
+                        </div>
+
+
+                        <!-- GRAPH -->
+
+                        <div class="business-graph">
+
+                            <div class="business-graph-line"></div>
+
+                        </div>
+
+
+                        <!-- PROFIT -->
+
+                        <div class="business-profit">
+                            PROFIT
+                        </div>
+
+
+                        <!-- COINS -->
+
+                        <div class="business-coin" style="left: 25%; bottom: 120px; --delay: 0s;"></div>
+
+                        <div class="business-coin" style="left: 72%; bottom: 100px; --delay: .5s;"></div>
+
+                        <div class="business-coin" style="left: 80%; bottom: 150px; --delay: 1s;"></div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            </div>
+            <script src="lab.js"></script>
+            <script src="pendulum.js"></script>
+            <script src="filtration.js"></script>
+            <script src="solar.js"></script>
+            <script src="business.js"></script>

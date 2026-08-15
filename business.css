@@ -1,0 +1,744 @@
+/* =========================================
+   BUSINESS & INVESTMENT ANIMATION
+========================================= */
+
+.business-scene {
+    position: relative;
+
+    width: 100%;
+    height: 430px;
+
+    overflow: hidden;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background:
+        radial-gradient(circle at 50% 30%,
+            rgba(95, 180, 225, 0.18),
+            transparent 45%);
+}
+
+
+/* =========================================
+   BUILDING
+========================================= */
+
+.business-building {
+    position: absolute;
+
+    left: 50%;
+    bottom: 75px;
+
+    width: 145px;
+    height: 170px;
+
+    transform:
+        translateX(-50%) scale(0.96);
+
+    transform-origin: center bottom;
+
+    border-radius: 10px 10px 5px 5px;
+
+    background:
+        linear-gradient(135deg,
+            #174b7d,
+            #2f78ad,
+            #174b7d);
+
+    border: 4px solid #173d67;
+
+    box-shadow:
+        0 0 25px rgba(50, 145, 210, 0.35),
+        inset 0 0 25px rgba(120, 205, 240, 0.12);
+
+    transition:
+        transform 0.5s ease,
+        box-shadow 0.5s ease;
+}
+
+
+/* =========================================
+   ROOF
+========================================= */
+
+.business-building::before {
+    content: "";
+
+    position: absolute;
+
+    top: -28px;
+    left: -15px;
+
+    width: 167px;
+    height: 30px;
+
+    border-radius: 8px 8px 2px 2px;
+
+    background:
+        linear-gradient(135deg,
+            #286294,
+            #438fbe);
+
+    border: 4px solid #173d67;
+}
+
+
+/* =========================================
+   WINDOWS
+========================================= */
+
+.business-window {
+    position: absolute;
+
+    width: 25px;
+    height: 32px;
+
+    border-radius: 4px;
+
+    background:
+        linear-gradient(135deg,
+            rgba(215, 240, 250, 0.9),
+            rgba(80, 165, 215, 0.45));
+
+    border: 2px solid rgba(20, 55, 90, 0.8);
+
+    box-shadow:
+        0 0 10px rgba(90, 190, 235, 0.25);
+
+    transition:
+        opacity 0.4s ease,
+        box-shadow 0.4s ease;
+}
+
+
+.business-window.one {
+    top: 25px;
+    left: 22px;
+}
+
+.business-window.two {
+    top: 25px;
+    right: 22px;
+}
+
+.business-window.three {
+    top: 75px;
+    left: 22px;
+}
+
+.business-window.four {
+    top: 75px;
+    right: 22px;
+}
+
+
+/* =========================================
+   DOOR
+========================================= */
+
+.business-door {
+    position: absolute;
+
+    bottom: 0;
+    left: 50%;
+
+    width: 38px;
+    height: 58px;
+
+    transform:
+        translateX(-50%);
+
+    border-radius: 6px 6px 0 0;
+
+    background:
+        linear-gradient(135deg,
+            #123553,
+            #245b86);
+
+    border: 3px solid #173d67;
+}
+
+
+/* =========================================
+   SIGN
+========================================= */
+
+.business-sign {
+    position: absolute;
+
+    top: -5px;
+    left: 50%;
+
+    transform:
+        translate(-50%, -50%);
+
+    padding: 6px 12px;
+
+    border-radius: 8px;
+
+    background:
+        linear-gradient(135deg,
+            #397fb0,
+            #65b8df);
+
+    color: #eaf8ff;
+
+    font-size: 11px;
+    font-weight: 700;
+
+    letter-spacing: 1px;
+
+    white-space: nowrap;
+
+    box-shadow:
+        0 0 15px rgba(70, 170, 220, 0.35);
+}
+
+
+/* =========================================
+   CUSTOMERS
+========================================= */
+
+.business-customer {
+    position: absolute;
+
+    bottom: 75px;
+
+    width: 18px;
+    height: 25px;
+
+    border-radius:
+        50% 50% 40% 40%;
+
+    background:
+        linear-gradient(to bottom,
+            #c9eaf8 0 35%,
+            #397fb0 36% 100%);
+
+    box-shadow:
+        0 0 8px rgba(70, 165, 215, 0.25);
+
+    animation:
+        customerMove 3s linear infinite;
+
+    animation-delay:
+        var(--delay);
+
+    transition:
+        opacity 0.4s ease;
+}
+
+
+@keyframes customerMove {
+
+    0% {
+        transform:
+            translateX(-170px) scale(0.75);
+
+        opacity: 0;
+    }
+
+    15% {
+        opacity: 1;
+    }
+
+    70% {
+        opacity: 1;
+    }
+
+    100% {
+        transform:
+            translateX(0) scale(1);
+
+        opacity: 0;
+    }
+}
+
+
+/* =========================================
+   MONEY
+========================================= */
+
+.business-money {
+    position: absolute;
+
+    left: 50%;
+    bottom: 155px;
+
+    font-size: 20px;
+
+    color: #c7eafa;
+
+    text-shadow:
+        0 0 12px rgba(75, 180, 230, 0.7);
+
+    animation:
+        moneyFloat 2.2s ease-out infinite;
+
+    animation-delay:
+        var(--delay);
+
+    opacity: 0;
+}
+
+
+@keyframes moneyFloat {
+
+    0% {
+        transform:
+            translate(calc(-50% + var(--x)),
+                15px) scale(0.7);
+
+        opacity: 0;
+    }
+
+    20% {
+        opacity: 1;
+    }
+
+    100% {
+        transform:
+            translate(calc(-50% + var(--x)),
+                -80px) scale(1.05);
+
+        opacity: 0;
+    }
+}
+
+
+/* =========================================
+   PROFIT GRAPH
+========================================= */
+
+.business-graph {
+    position: absolute;
+
+    /*
+       الرسم صار جهة اليسار
+    */
+    left: 7%;
+
+    /*
+       نفس مستوى البيت تقريبًا
+    */
+    bottom: 70px;
+
+    /*
+       كبير وواضح
+    */
+    width: 300px;
+    height: 190px;
+
+    border-left:
+        3px solid rgba(190, 225, 240, 0.40);
+
+    border-bottom:
+        3px solid rgba(190, 225, 240, 0.40);
+
+    border-radius:
+        4px 0 0 0;
+
+    background:
+        rgba(25, 75, 110, 0.10);
+
+    overflow: visible;
+
+    box-sizing: border-box;
+}
+
+
+/* =========================================
+   GRAPH GRID
+========================================= */
+
+.business-graph::before {
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    background:
+        linear-gradient(to right,
+            rgba(190, 225, 240, 0.08) 1px,
+            transparent 1px),
+        linear-gradient(to top,
+            rgba(190, 225, 240, 0.08) 1px,
+            transparent 1px);
+
+    background-size:
+        60px 38px;
+
+    pointer-events: none;
+}
+
+
+/* =========================================
+   HORIZONTAL CENTER LINE
+========================================= */
+
+.business-graph::after {
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+    right: 0;
+
+    top: 50%;
+
+    height: 2px;
+
+    background:
+        rgba(190, 225, 240, 0.15);
+
+    pointer-events: none;
+}
+
+
+/* =========================================
+   GRAPH BASE
+========================================= */
+
+.business-graph-base {
+    position: absolute;
+
+    left: 0;
+    bottom: 50%;
+
+    width: 100%;
+    height: 2px;
+
+    background:
+        rgba(220, 242, 250, 0.25);
+
+    pointer-events: none;
+}
+
+
+/* =========================================
+   GRAPH LINE
+========================================= */
+
+.business-graph-line {
+    position: absolute;
+
+    /*
+       يبدأ من اليسار
+    */
+    left: 0;
+
+    /*
+       يبدأ من منتصف الرسم
+       والـJS يحركه لفوق/جوه
+    */
+    bottom: 50%;
+
+    width: 270px;
+
+    /*
+       سمك الخط
+    */
+    height: 6px;
+
+    border-radius: 10px;
+
+    background:
+        linear-gradient(to right,
+            #5db7df,
+            #a8e6ff);
+
+    transform-origin:
+        left center;
+
+    filter:
+        drop-shadow(0 0 7px rgba(70, 180, 230, 0.8));
+
+    /*
+       أنميشن ناعم
+    */
+    transition:
+        transform 0.75s cubic-bezier(0.22,
+            1,
+            0.36,
+            1),
+
+        opacity 0.5s ease,
+
+        width 0.6s ease;
+}
+
+
+/* =========================================
+   GRAPH END DOT
+========================================= */
+
+.business-graph-dot {
+    position: absolute;
+
+    left: 270px;
+    bottom: 50%;
+
+    width: 12px;
+    height: 12px;
+
+    transform:
+        translate(-50%,
+            50%);
+
+    border-radius: 50%;
+
+    background:
+        #d8f3ff;
+
+    box-shadow:
+        0 0 12px rgba(100, 205, 240, 0.9),
+
+        0 0 25px rgba(100, 205, 240, 0.5);
+
+    transition:
+        transform 0.75s cubic-bezier(0.22,
+            1,
+            0.36,
+            1);
+}
+
+
+/* =========================================
+   PROFIT TEXT
+========================================= */
+
+.business-profit {
+    position: absolute;
+
+    left: 7%;
+    bottom: 275px;
+
+    width: 300px;
+
+    text-align: center;
+
+    color: #d8f3ff;
+
+    font-size: 22px;
+    font-weight: 800;
+
+    letter-spacing: 4px;
+
+    text-shadow:
+        0 0 10px rgba(70, 175, 225, 0.6);
+
+    transition:
+        transform 0.5s ease,
+        opacity 0.4s ease;
+}
+
+
+/* =========================================
+   STATUS
+========================================= */
+
+.business-status {
+    position: absolute;
+
+    left: 50%;
+    bottom: 25px;
+
+    transform:
+        translateX(-50%);
+
+    color: #b8dff0;
+
+    font-size: 10px;
+    font-weight: 700;
+
+    letter-spacing: 1.5px;
+
+    white-space: nowrap;
+
+    opacity: 0.8;
+}
+
+
+/* =========================================
+   GLOW
+========================================= */
+
+.business-glow {
+    position: absolute;
+
+    left: 50%;
+    bottom: 55px;
+
+    width: 230px;
+    height: 70px;
+
+    transform:
+        translateX(-50%);
+
+    border-radius: 50%;
+
+    background:
+        rgba(55, 155, 215, 0.16);
+
+    filter:
+        blur(22px);
+
+    transition:
+        opacity 0.5s ease;
+}
+
+
+/* =========================================
+   BUSINESS STATES
+========================================= */
+
+.business-scene.business-profitable .business-building {
+    animation:
+        businessSuccess 1.8s ease-in-out infinite;
+}
+
+
+.business-scene.business-profitable .business-profit {
+    animation:
+        profitPulse 1.2s ease-in-out infinite;
+}
+
+
+.business-scene.business-loss .business-building {
+    animation:
+        businessLoss 2.5s ease-in-out infinite;
+}
+
+
+.business-scene.business-loss .business-profit {
+    animation:
+        profitLoss 2s ease-in-out infinite;
+}
+
+
+.business-scene.business-warning .business-building {
+    animation:
+        businessWarning 1.2s ease-in-out infinite;
+}
+
+
+/* =========================================
+   SUCCESS ANIMATION
+========================================= */
+
+@keyframes businessSuccess {
+
+    0%,
+    100% {
+        filter:
+            brightness(1);
+    }
+
+    50% {
+        filter:
+            brightness(1.3);
+    }
+}
+
+
+/* =========================================
+   PROFIT PULSE
+========================================= */
+
+@keyframes profitPulse {
+
+    0%,
+    100% {
+        letter-spacing: 4px;
+    }
+
+    50% {
+        letter-spacing: 6px;
+    }
+}
+
+
+/* =========================================
+   LOSS
+========================================= */
+
+@keyframes businessLoss {
+
+    0%,
+    100% {
+        filter:
+            brightness(0.9);
+    }
+
+    50% {
+        filter:
+            brightness(0.65);
+    }
+}
+
+
+@keyframes profitLoss {
+
+    0%,
+    100% {
+        transform:
+            scale(0.90);
+    }
+
+    50% {
+        transform:
+            scale(0.82);
+    }
+}
+
+
+/* =========================================
+   WARNING
+========================================= */
+
+@keyframes businessWarning {
+
+    0%,
+    100% {
+        filter:
+            brightness(1);
+    }
+
+    50% {
+        filter:
+            brightness(0.7);
+    }
+}
+
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+
+@media (max-width: 900px) {
+
+    .business-graph {
+        left: 3%;
+
+        width: 230px;
+        height: 160px;
+    }
+
+    .business-graph-line {
+        width: 205px;
+    }
+
+    .business-graph-dot {
+        left: 205px;
+    }
+
+    .business-profit {
+        left: 3%;
+        bottom: 240px;
+        width: 230px;
+        font-size: 18px;
+    }
+}

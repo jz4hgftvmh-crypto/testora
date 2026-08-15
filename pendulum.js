@@ -9,7 +9,6 @@ document.addEventListener("DOMContentLoaded", function () {
             "#physics .animation-area"
         );
 
-
     if (!physicsAnimation) {
         return;
     }
@@ -20,7 +19,6 @@ document.addEventListener("DOMContentLoaded", function () {
     ========================================= */
 
     physicsAnimation.innerHTML = "";
-
 
     const scene =
         document.createElement("div");
@@ -71,8 +69,6 @@ document.addEventListener("DOMContentLoaded", function () {
         "pendulum-ground";
 
 
-    /* ترتيب العناصر */
-
     arm.appendChild(ball);
     arm.appendChild(glow);
 
@@ -85,7 +81,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
     /* =========================================
-       GET VARIABLES FROM YOUR HTML
+       GET INPUTS
     ========================================= */
 
     const force =
@@ -100,16 +96,113 @@ document.addEventListener("DOMContentLoaded", function () {
     const length =
         document.getElementById("length");
 
+    const gravity =
+        document.getElementById("gravity");
 
-    /* إذا المتغيرات غير موجودة نوقف */
+    const damping =
+        document.getElementById("damping");
+
+
+    /* =========================================
+       GET VALUE TEXTS
+    ========================================= */
+
+    const forceValue =
+        document.getElementById("forceValue");
+
+    const massValue =
+        document.getElementById("massValue");
+
+    const angleValue =
+        document.getElementById("angleValue");
+
+    const lengthValue =
+        document.getElementById("lengthValue");
+
+    const gravityValue =
+        document.getElementById("gravityValue");
+
+    const dampingValue =
+        document.getElementById("dampingValue");
+
+
+    /* =========================================
+       CHECK
+    ========================================= */
 
     if (
         !force ||
         !mass ||
         !angle ||
-        !length
+        !length ||
+        !gravity ||
+        !damping
     ) {
         return;
+    }
+
+
+    /* =========================================
+       UPDATE DISPLAY VALUES
+    ========================================= */
+
+    function updateValueLabels() {
+
+        const forceNumber =
+            Number(force.value);
+
+        const massNumber =
+            Number(mass.value);
+
+        const angleNumber =
+            Number(angle.value);
+
+        const lengthNumber =
+            Number(length.value);
+
+        const gravityNumber =
+            Number(gravity.value);
+
+        const dampingNumber =
+            Number(damping.value);
+
+
+        if (forceValue) {
+            forceValue.textContent =
+                forceNumber + " N";
+        }
+
+
+        if (massValue) {
+            massValue.textContent =
+                massNumber + " kg";
+        }
+
+
+        if (angleValue) {
+            angleValue.textContent =
+                angleNumber + "°";
+        }
+
+
+        if (lengthValue) {
+            lengthValue.textContent =
+                lengthNumber.toFixed(1) + " m";
+        }
+
+
+        if (gravityValue) {
+            gravityValue.textContent =
+                gravityNumber.toFixed(2) +
+                " m/s²";
+        }
+
+
+        if (dampingValue) {
+            dampingValue.textContent =
+                dampingNumber + "%";
+        }
+
     }
 
 
@@ -129,30 +222,40 @@ document.addEventListener("DOMContentLoaded", function () {
 
     function updatePendulum(deltaTime) {
 
-        const forceValue =
+        const forceNumber =
             Number(force.value);
 
-        const massValue =
+        const massNumber =
             Number(mass.value);
 
-        const angleValue =
+        const angleNumber =
             Number(angle.value);
 
-        const lengthValue =
+        const lengthNumber =
             Number(length.value);
 
+        const gravityNumber =
+            Number(gravity.value);
 
-        /* ---------------------------------------
-           LENGTH
+        const dampingNumber =
+            Number(damping.value);
 
-           1m = قصير
-           5m = طويل
-        --------------------------------------- */
+
+        /* =====================================
+           UPDATE NUMBERS
+        ===================================== */
+
+        updateValueLabels();
+
+
+        /* =====================================
+           ROPE LENGTH
+        ===================================== */
 
         const ropeHeight =
             120 +
             (
-                (lengthValue - 1) / 4
+                (lengthNumber - 1) / 4
             ) * 180;
 
 
@@ -160,16 +263,14 @@ document.addEventListener("DOMContentLoaded", function () {
             ropeHeight + "px";
 
 
-        /* ---------------------------------------
+        /* =====================================
            MASS
-
-           الكتلة تغير حجم الكرة
-        --------------------------------------- */
+        ===================================== */
 
         const ballSize =
             42 +
             (
-                (massValue - 1) / 19
+                (massNumber - 1) / 19
             ) * 32;
 
 
@@ -194,56 +295,78 @@ document.addEventListener("DOMContentLoaded", function () {
             -(ballSize / 2 + 10) + "px";
 
 
-        /* ---------------------------------------
+        /* =====================================
            FORCE
-
-           القوة تزيد سعة الحركة
-        --------------------------------------- */
+        ===================================== */
 
         const forceEffect =
             0.35 +
-            (forceValue / 100) * 0.65;
+            (forceNumber / 100) * 0.65;
 
 
         const movement =
-            angleValue *
+            angleNumber *
             forceEffect;
 
 
-        /* ---------------------------------------
-           LENGTH
-
-           البندول الأطول أبطأ
-        --------------------------------------- */
-
-        const gravity = 9.81;
+        /* =====================================
+           GRAVITY + LENGTH
+        ===================================== */
 
         const period =
             2 *
             Math.PI *
             Math.sqrt(
-                lengthValue / gravity
+                lengthNumber /
+                gravityNumber
             );
 
 
-        const speed =
+        const baseSpeed =
             (2 * Math.PI) /
             period;
 
+
+        /* =====================================
+           DAMPING
+        ===================================== */
+
+        const dampingNormalized =
+            dampingNumber / 100;
+
+
+        const dampingEffect =
+            1 -
+            dampingNormalized * 0.75;
+
+
+        const finalMovement =
+            movement *
+            Math.max(
+                0.25,
+                dampingEffect
+            );
+
+
+        /* =====================================
+           TIME
+        ===================================== */
 
         time +=
             deltaTime * 0.001;
 
 
-        /* حركة البندول */
+        /* =====================================
+           MOVEMENT
+        ===================================== */
 
         const currentAngle =
             Math.sin(
                 time *
-                speed *
+                baseSpeed *
                 2.2
             ) *
-            movement;
+            finalMovement;
 
 
         arm.style.transform =
@@ -252,33 +375,127 @@ document.addEventListener("DOMContentLoaded", function () {
             "deg)";
 
 
-        /* ---------------------------------------
-           FORCE TEXT
-        --------------------------------------- */
+        /* =====================================
+           FORCE TEXT INSIDE ANIMATION
+        ===================================== */
 
         forceText.textContent =
             "FORCE  " +
-            forceValue +
+            forceNumber +
             " N";
 
 
-        /* ---------------------------------------
-           FORCE GLOW
+        /* =====================================
+           GLOW
+        ===================================== */
 
-           كلما زادت القوة تزيد إضاءة الكرة
-        --------------------------------------- */
-
-        const glowStrength =
+        const forceGlow =
             0.25 +
-            (forceValue / 100) * 0.45;
+            (forceNumber / 100) * 0.45;
+
+
+        const massGlow =
+            (massNumber / 20) * 0.15;
+
+
+        const finalGlow =
+            Math.min(
+                0.9,
+                forceGlow +
+                massGlow
+            );
 
 
         glow.style.background =
             "rgba(150, 85, 255, " +
-            glowStrength +
+            finalGlow +
+            ")";
+
+
+        /* =====================================
+           GRAVITY VISUAL EFFECT
+        ===================================== */
+
+        const gravityBrightness =
+            0.8 +
+            (gravityNumber / 20) * 0.35;
+
+
+        ball.style.filter =
+            "brightness(" +
+            gravityBrightness +
+            ")";
+
+
+        /* =====================================
+           DAMPING VISUAL EFFECT
+        ===================================== */
+
+        const dampingBrightness =
+            1 -
+            dampingNormalized * 0.25;
+
+
+        ball.style.opacity =
+            dampingBrightness;
+
+
+        /* =====================================
+           FORCE VISUAL SCALE
+        ===================================== */
+
+        const ballScale =
+            1 +
+            (forceNumber / 100) * 0.08;
+
+        ball.style.transform =
+            "translateX(-50%) scale(" +
+            ballScale +
             ")";
 
     }
+
+
+    /* =========================================
+       SLIDER EVENTS
+    ========================================= */
+
+    force.addEventListener(
+        "input",
+        updateValueLabels
+    );
+
+    mass.addEventListener(
+        "input",
+        updateValueLabels
+    );
+
+    angle.addEventListener(
+        "input",
+        updateValueLabels
+    );
+
+    length.addEventListener(
+        "input",
+        updateValueLabels
+    );
+
+    gravity.addEventListener(
+        "input",
+        updateValueLabels
+    );
+
+    damping.addEventListener(
+        "input",
+        updateValueLabels
+    );
+
+
+    /* =========================================
+       INITIAL VALUES
+    ========================================= */
+
+    updateValueLabels();
 
 
     /* =========================================
@@ -304,11 +521,67 @@ document.addEventListener("DOMContentLoaded", function () {
         requestAnimationFrame(
             animate
         );
+
     }
 
 
     requestAnimationFrame(
         animate
     );
+
+});
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    const gravity = document.getElementById("gravity");
+    const damping = document.getElementById("damping");
+
+    const gravityValue =
+        document.getElementById("gravityValue");
+
+    const dampingValue =
+        document.getElementById("dampingValue");
+
+
+    function updatePhysicsNewValues() {
+
+        if (gravity && gravityValue) {
+
+            gravityValue.textContent =
+                Number(gravity.value).toFixed(2) +
+                " m/s²";
+
+        }
+
+
+        if (damping && dampingValue) {
+
+            dampingValue.textContent =
+                Number(damping.value) +
+                "%";
+
+        }
+
+    }
+
+
+    if (gravity) {
+        gravity.addEventListener(
+            "input",
+            updatePhysicsNewValues
+        );
+    }
+
+
+    if (damping) {
+        damping.addEventListener(
+            "input",
+            updatePhysicsNewValues
+        );
+    }
+
+
+    updatePhysicsNewValues();
+
 
 });

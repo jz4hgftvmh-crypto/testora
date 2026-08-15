@@ -14,8 +14,8 @@ html {
 
 body {
     font-family: Arial, Helvetica, sans-serif;
-    background: #f7f8fc;
-    color: #1d2433;
+    background: #E9F7FF;
+    color: #213F7D;
     line-height: 1.6;
 }
 
@@ -31,7 +31,7 @@ body {
     justify-content: space-between;
     align-items: center;
     background: white;
-    border-bottom: 1px solid #e8eaf0;
+    border-bottom: 1px solid #C6EAFA;
     position: sticky;
     top: 0;
     z-index: 100;
@@ -58,13 +58,13 @@ body {
 
 .nav-links a {
     text-decoration: none;
-    color: #555;
+    color: #3481C3;
     font-size: 15px;
     transition: 0.2s;
 }
 
 .nav-links a:hover {
-    color: #1d2433;
+    color: #03529D;
 }
 
 
@@ -91,26 +91,27 @@ body {
     font-weight: bold;
     letter-spacing: 2px;
     margin-bottom: 15px;
-    color: #666;
+    color: #3481C3;
 }
 
 .hero h1 {
     font-size: clamp(42px, 7vw, 76px);
     line-height: 1.05;
     margin-bottom: 25px;
+    color: #213F7D;
 }
 
 .hero-description {
     max-width: 600px;
     margin: 0 auto 35px;
-    color: #666;
+    color: #3481C3;
     font-size: 18px;
 }
 
 .primary-button {
     display: inline-block;
     padding: 14px 28px;
-    background: #1d2433;
+    background: #2369B3;
     color: white;
     text-decoration: none;
     border-radius: 10px;
@@ -144,7 +145,7 @@ body {
 }
 
 .section-heading>p:last-child {
-    color: #666;
+    color: #3481C3;
 }
 
 
@@ -162,7 +163,7 @@ body {
 
 .feature-card {
     background: white;
-    border: 1px solid #e5e7ed;
+    border: 1px solid #A4DCF7;
     border-radius: 18px;
     padding: 35px;
     transition: 0.25s;
@@ -170,7 +171,7 @@ body {
 
 .feature-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.07);
+    box-shadow: 0 15px 35px rgba(3, 82, 157, 0.15);
 }
 
 .card-icon {
@@ -180,7 +181,8 @@ body {
     align-items: center;
     justify-content: center;
     border-radius: 10px;
-    background: #f0f1f5;
+    background: #E9F7FF;
+    color: #2369B3;
     font-weight: bold;
     margin-bottom: 25px;
 }
@@ -188,19 +190,20 @@ body {
 .feature-card h3 {
     font-size: 25px;
     margin-bottom: 12px;
+    color: #213F7D;
 }
 
 .feature-card p {
-    color: #666;
+    color: #3481C3;
     margin-bottom: 25px;
 }
 
 .card-button {
     display: inline-block;
     text-decoration: none;
-    color: #1d2433;
+    color: #2369B3;
     font-weight: bold;
-    border-bottom: 2px solid #1d2433;
+    border-bottom: 2px solid #2369B3;
     padding-bottom: 3px;
 }
 
@@ -228,16 +231,17 @@ body {
 .step span {
     font-size: 14px;
     font-weight: bold;
-    color: #777;
+    color: #3481C3;
 }
 
 .step h3 {
     font-size: 24px;
     margin: 10px 0;
+    color: #213F7D;
 }
 
 .step p {
-    color: #666;
+    color: #3481C3;
 }
 
 
@@ -247,7 +251,7 @@ body {
 
 footer {
     padding: 35px 7%;
-    background: #1d2433;
+    background: #213F7D;
     color: white;
     text-align: center;
 }
@@ -268,7 +272,6 @@ footer p:last-child {
     .navbar {
         padding: 15px 5%;
     }
-
 
     .nav-links {
         display: none;
@@ -305,14 +308,15 @@ footer p:last-child {
     }
 }
 
-/* =========================
-   Idea Analysis Page
-========================= */
+
+/* =========================================================
+   IDEA ANALYSIS PAGE
+========================================================= */
 
 .analysis-page {
     min-height: 85vh;
     padding: 80px 20px;
-    background: #f7f8fc;
+    background: #E9F7FF;
 }
 
 .analysis-header {
@@ -328,7 +332,7 @@ footer p:last-child {
 }
 
 .analysis-header>p:last-child {
-    color: #666;
+    color: #3481C3;
     font-size: 17px;
 }
 
@@ -340,13 +344,13 @@ footer p:last-child {
     margin: 0 auto;
     padding: 40px;
     background: white;
-    border: 1px solid #e5e7ed;
+    border: 1px solid #A4DCF7;
     border-radius: 20px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 10px 30px rgba(3, 82, 157, 0.10);
 }
 
 .question-number {
-    color: #777;
+    color: #3481C3;
     font-size: 14px;
     font-weight: bold;
     margin-bottom: 15px;
@@ -369,7 +373,7 @@ footer p:last-child {
 .option {
     padding: 18px;
     background: white;
-    border: 2px solid #e2e4ea;
+    border: 2px solid #A4DCF7;
     border-radius: 12px;
     font-size: 16px;
     cursor: pointer;
@@ -378,12 +382,12 @@ footer p:last-child {
 }
 
 .option:hover {
-    border-color: #1d2433;
+    border-color: #2369B3;
     transform: translateY(-2px);
 }
 
 .option:focus {
-    border-color: #1d2433;
+    border-color: #2369B3;
 }
 
 
@@ -393,7 +397,7 @@ footer p:last-child {
     padding: 15px;
     border: none;
     border-radius: 10px;
-    background: #1d2433;
+    background: #2369B3;
     color: white;
     font-size: 16px;
     font-weight: bold;
@@ -406,34 +410,10 @@ footer p:last-child {
 }
 
 
-
-@media (max-width: 600px) {
-
-    .analysis-page {
-        padding: 55px 15px;
-    }
-
-    .analysis-header h1 {
-        font-size: 36px;
-    }
-
-    .question-card {
-        padding: 25px;
-    }
-
-    .question-card h2 {
-        font-size: 23px;
-    }
-
-    .options {
-        grid-template-columns: 1fr;
-    }
-}
-
 /* =========================================================
    IDEA ANALYSIS PAGE
-   Purple Theme + Animated Stars
-   ========================================================= */
+   BLUE THEME + ANIMATED STARS
+========================================================= */
 
 
 /* =========================
@@ -457,10 +437,10 @@ body:has(.analysis-page) {
 
     background:
         radial-gradient(circle at 50% 0%,
-            #d8b4fe 0%,
-            #b982e8 25%,
-            #8d5fbe 55%,
-            #68448f 100%);
+            #E9F7FF 0%,
+            #A4DCF7 25%,
+            #4B9DD6 55%,
+            #213F7D 100%);
 
     overflow-x: hidden;
 }
@@ -480,7 +460,7 @@ body:has(.analysis-page) .navbar {
 
     padding: 0 7%;
 
-    background: rgba(35, 17, 57, 0.92);
+    background: rgba(3, 82, 157, 0.92);
 
     border-bottom: 1px solid rgba(255, 255, 255, 0.15);
 
@@ -515,8 +495,8 @@ body:has(.analysis-page) .navbar>a {
 }
 
 body:has(.analysis-page) .navbar>a:hover {
-    color: #e9d5ff;
-    text-shadow: 0 0 12px #d8b4fe;
+    color: #E9F7FF;
+    text-shadow: 0 0 12px #A4DCF7;
 }
 
 
@@ -535,13 +515,13 @@ body:has(.analysis-page) .analysis-page {
 
     background:
         radial-gradient(circle at 50% 15%,
-            rgba(255, 255, 255, 0.16),
+            rgba(233, 247, 255, 0.18),
             transparent 30%),
         linear-gradient(135deg,
-            #c99aed 0%,
-            #a56bd0 35%,
-            #8052a9 70%,
-            #62417f 100%);
+            #84C8EF 0%,
+            #4B9DD6 35%,
+            #2369B3 70%,
+            #213F7D 100%);
 }
 
 
@@ -578,7 +558,7 @@ body:has(.analysis-page) .analysis-page::before {
 
     text-shadow:
         0 0 5px rgba(255, 255, 255, 0.8),
-        0 0 12px rgba(233, 213, 255, 0.8);
+        0 0 12px rgba(164, 220, 247, 0.8);
 
     z-index: 0;
 }
@@ -614,7 +594,7 @@ body:has(.analysis-page) .analysis-page::after {
 
     text-shadow:
         0 0 5px white,
-        0 0 15px #e9d5ff;
+        0 0 15px #A4DCF7;
 
     z-index: 0;
 }
@@ -680,7 +660,7 @@ body:has(.analysis-page) .analysis-header {
 body:has(.analysis-page) .small-title {
     margin-bottom: 15px;
 
-    color: #f1dfff;
+    color: #E9F7FF;
 
     font-size: 12px;
     font-weight: 700;
@@ -703,7 +683,7 @@ body:has(.analysis-page) .analysis-header h1 {
     line-height: 1.1;
 
     text-shadow:
-        0 3px 15px rgba(58, 25, 85, 0.35);
+        0 3px 15px rgba(3, 82, 157, 0.35);
 }
 
 body:has(.analysis-page) .analysis-header>p:last-child {
@@ -736,14 +716,14 @@ body:has(.analysis-page) .question-card {
 
     background:
         linear-gradient(145deg,
-            rgba(50, 27, 72, 0.96),
-            rgba(35, 20, 53, 0.96));
+            rgba(3, 82, 157, 0.96),
+            rgba(33, 63, 125, 0.96));
 
     border: 1px solid rgba(255, 255, 255, 0.14);
 
     box-shadow:
-        0 20px 60px rgba(37, 13, 58, 0.45),
-        0 0 30px rgba(216, 180, 254, 0.12);
+        0 20px 60px rgba(3, 40, 90, 0.45),
+        0 0 30px rgba(164, 220, 247, 0.12);
 
     backdrop-filter: blur(12px);
 
@@ -754,8 +734,8 @@ body:has(.analysis-page) .question-card {
 
 body:has(.analysis-page) .question-card:hover {
     box-shadow:
-        0 25px 70px rgba(37, 13, 58, 0.5),
-        0 0 35px rgba(216, 180, 254, 0.2);
+        0 25px 70px rgba(3, 40, 90, 0.5),
+        0 0 35px rgba(164, 220, 247, 0.2);
 }
 
 
@@ -821,8 +801,8 @@ body:has(.analysis-page) .option {
 
     background:
         linear-gradient(135deg,
-            rgba(104, 71, 130, 0.65),
-            rgba(76, 50, 100, 0.65));
+            rgba(52, 129, 195, 0.65),
+            rgba(35, 105, 179, 0.65));
 
     color: #ffffff;
 
@@ -846,15 +826,15 @@ body:has(.analysis-page) .option {
 body:has(.analysis-page) .option:hover {
     transform: translateY(-2px);
 
-    border-color: #d8b4fe;
+    border-color: #A4DCF7;
 
     background:
         linear-gradient(135deg,
-            rgba(139, 92, 176, 0.85),
-            rgba(91, 58, 120, 0.85));
+            rgba(75, 157, 214, 0.85),
+            rgba(35, 105, 179, 0.85));
 
     box-shadow:
-        0 0 15px rgba(216, 180, 254, 0.25);
+        0 0 15px rgba(164, 220, 247, 0.25);
 }
 
 
@@ -864,17 +844,17 @@ body:has(.analysis-page) .option.selected,
 body:has(.analysis-page) .option:focus {
     outline: none;
 
-    border-color: #e9d5ff;
+    border-color: #E9F7FF;
 
     background:
         linear-gradient(135deg,
-            #8050a7,
-            #a96ed3);
+            #2369B3,
+            #65B5E5);
 
     box-shadow:
-        -6px 0 18px rgba(216, 180, 254, 0.55),
-        6px 0 18px rgba(216, 180, 254, 0.55),
-        0 0 25px rgba(216, 180, 254, 0.25);
+        -6px 0 18px rgba(164, 220, 247, 0.55),
+        6px 0 18px rgba(164, 220, 247, 0.55),
+        0 0 25px rgba(164, 220, 247, 0.25);
 }
 
 
@@ -893,9 +873,9 @@ body:has(.analysis-page) .next-button {
 
     background:
         linear-gradient(100deg,
-            #c4b5fd,
-            #e9d5ff,
-            #c4b5fd);
+            #3481C3,
+            #84C8EF,
+            #3481C3);
 
     color: #ffffff;
 
@@ -905,7 +885,7 @@ body:has(.analysis-page) .next-button {
     cursor: pointer;
 
     box-shadow:
-        0 8px 25px rgba(216, 180, 254, 0.22);
+        0 8px 25px rgba(164, 220, 247, 0.22);
 
     transition:
         transform 0.25s ease,
@@ -916,8 +896,8 @@ body:has(.analysis-page) .next-button:hover {
     transform: translateY(-2px);
 
     box-shadow:
-        0 0 20px rgba(233, 213, 255, 0.7),
-        0 10px 30px rgba(216, 180, 254, 0.3);
+        0 0 20px rgba(233, 247, 255, 0.7),
+        0 10px 30px rgba(164, 220, 247, 0.3);
 }
 
 body:has(.analysis-page) .next-button:active {
@@ -965,12 +945,12 @@ body:has(.analysis-page) .next-button:active {
 /* =========================================================
    VIRTUAL INNOVATION LAB
    MAIN PAGE ONLY
-   ========================================================= */
+========================================================= */
 
 
 /* =========================================================
    BODY + ONE CONTINUOUS GRADIENT
-   ========================================================= */
+========================================================= */
 
 body:has(#home) {
     margin: 0;
@@ -978,7 +958,7 @@ body:has(#home) {
 
     font-family: Arial, Helvetica, sans-serif;
 
-    color: #171329;
+    color: #213F7D;
 
     line-height: 1.6;
 
@@ -986,13 +966,13 @@ body:has(#home) {
 
     background:
         linear-gradient(180deg,
-            #b77cda 0%,
-            #a66dcc 18%,
-            #925fc1 35%,
-            #7d5ab7 52%,
-            #6b62b4 68%,
-            #5874bb 84%,
-            #4b7dc2 100%);
+            #A4DCF7 0%,
+            #84C8EF 18%,
+            #65B5E5 35%,
+            #4B9DD6 52%,
+            #3481C3 68%,
+            #2369B3 84%,
+            #03529D 100%);
 }
 
 
@@ -1003,7 +983,7 @@ body:has(#home) * {
 
 /* =========================================================
    MOVING STARS
-   ========================================================= */
+========================================================= */
 
 body:has(#home)::before {
 
@@ -1041,7 +1021,7 @@ body:has(#home)::before {
 
     text-shadow:
         0 0 7px rgba(255, 255, 255, 0.9),
-        0 0 15px rgba(220, 190, 255, 0.7);
+        0 0 15px rgba(198, 234, 250, 0.7);
 
     animation:
         starsDown 14s ease-in-out infinite,
@@ -1094,7 +1074,7 @@ body:has(#home)::after {
 
 /* =========================================================
    STAR ANIMATIONS
-   ========================================================= */
+========================================================= */
 
 @keyframes starsDown {
 
@@ -1162,7 +1142,7 @@ body:has(#home)::after {
 
 /* =========================================================
    NAVBAR
-   ========================================================= */
+========================================================= */
 
 body:has(#home) .navbar {
 
@@ -1182,7 +1162,7 @@ body:has(#home) .navbar {
 
     padding: 0 7%;
 
-    background: rgba(31, 22, 67, 0.84);
+    background: rgba(3, 82, 157, 0.84);
 
     border-bottom: 1px solid rgba(255, 255, 255, 0.15);
 
@@ -1249,14 +1229,14 @@ body:has(#home) .nav-links a:hover {
     color: #ffffff;
 
     text-shadow:
-        0 0 10px rgba(235, 210, 255, 0.9),
-        0 0 20px rgba(202, 155, 255, 0.6);
+        0 0 10px rgba(233, 247, 255, 0.9),
+        0 0 20px rgba(164, 220, 247, 0.6);
 }
 
 
 /* =========================================================
    HERO
-   ========================================================= */
+========================================================= */
 
 body:has(#home) .hero {
 
@@ -1294,7 +1274,7 @@ body:has(#home) .hero .small-title {
 
     margin: 0 0 14px;
 
-    color: #f3ddff;
+    color: #E9F7FF;
 
     font-size: 13px;
 
@@ -1308,7 +1288,7 @@ body:has(#home) .hero h1 {
 
     margin: 0;
 
-    color: #171329;
+    color: #213F7D;
 
     font-size: clamp(45px, 6vw, 76px);
 
@@ -1334,7 +1314,7 @@ body:has(#home) .hero-description {
 
 /* =========================================================
    PRIMARY BUTTON
-   ========================================================= */
+========================================================= */
 
 body:has(#home) .primary-button {
 
@@ -1346,8 +1326,8 @@ body:has(#home) .primary-button {
 
     background:
         linear-gradient(100deg,
-            #70409f,
-            #a96bd3);
+            #03529D,
+            #2369B3);
 
     border: 1px solid rgba(255, 255, 255, 0.30);
 
@@ -1358,8 +1338,8 @@ body:has(#home) .primary-button {
     font-weight: 700;
 
     box-shadow:
-        0 10px 30px rgba(38, 15, 70, 0.35),
-        0 0 20px rgba(199, 144, 255, 0.22);
+        0 10px 30px rgba(3, 50, 100, 0.35),
+        0 0 20px rgba(132, 200, 239, 0.22);
 
     transition: all 0.3s ease;
 }
@@ -1370,14 +1350,14 @@ body:has(#home) .primary-button:hover {
     transform: translateY(-3px);
 
     box-shadow:
-        0 14px 35px rgba(38, 15, 70, 0.45),
-        0 0 30px rgba(220, 174, 255, 0.55);
+        0 14px 35px rgba(3, 50, 100, 0.45),
+        0 0 30px rgba(164, 220, 247, 0.55);
 }
 
 
 /* =========================================================
    FEATURES
-   ========================================================= */
+========================================================= */
 
 body:has(#home) .features {
 
@@ -1405,7 +1385,7 @@ body:has(#home) .section-heading {
 
 body:has(#home) .section-heading .small-title {
 
-    color: #f0dcff;
+    color: #E9F7FF;
 
     font-size: 13px;
 
@@ -1437,7 +1417,7 @@ body:has(#home) .section-heading>p:last-child {
 
 /* =========================================================
    FEATURE CARDS
-   ========================================================= */
+========================================================= */
 
 body:has(#home) .feature-cards {
 
@@ -1469,15 +1449,15 @@ body:has(#home) .feature-card {
 
     background:
         linear-gradient(145deg,
-            rgba(39, 30, 77, 0.97),
-            rgba(58, 42, 101, 0.94));
+            rgba(3, 82, 157, 0.97),
+            rgba(33, 63, 125, 0.94));
 
-    border: 1px solid rgba(221, 194, 255, 0.22);
+    border: 1px solid rgba(198, 234, 250, 0.22);
 
     border-radius: 18px;
 
     box-shadow:
-        0 18px 45px rgba(15, 13, 42, 0.28);
+        0 18px 45px rgba(3, 45, 90, 0.28);
 
     transition:
         transform 0.35s ease,
@@ -1500,7 +1480,7 @@ body:has(#home) .feature-card::before {
 
     right: -80px;
 
-    background: #bb7cef;
+    background: #84C8EF;
 
     border-radius: 50%;
 
@@ -1526,11 +1506,11 @@ body:has(#home) .feature-card::after {
 
     border-radius: 10px;
 
-    background: #c084fc;
+    background: #84C8EF;
 
     box-shadow:
-        0 0 12px #c084fc,
-        0 0 25px #a855f7;
+        0 0 12px #84C8EF,
+        0 0 25px #65B5E5;
 
     opacity: 0;
 
@@ -1542,11 +1522,11 @@ body:has(#home) .feature-card:hover {
 
     transform: translateY(-8px);
 
-    border-color: rgba(213, 164, 255, 0.75);
+    border-color: rgba(198, 234, 250, 0.75);
 
     box-shadow:
-        0 22px 55px rgba(14, 10, 45, 0.40),
-        0 0 28px rgba(185, 120, 237, 0.30);
+        0 22px 55px rgba(3, 45, 90, 0.40),
+        0 0 28px rgba(101, 181, 229, 0.30);
 }
 
 
@@ -1558,7 +1538,7 @@ body:has(#home) .feature-card:hover::after {
 
 /* =========================================================
    CARD ICON
-   ========================================================= */
+========================================================= */
 
 body:has(#home) .card-icon {
 
@@ -1579,9 +1559,9 @@ body:has(#home) .card-icon {
     background:
         linear-gradient(135deg,
             #ffffff,
-            #dfc8ff);
+            #C6EAFA);
 
-    color: #50317d;
+    color: #03529D;
 
     border-radius: 12px;
 
@@ -1590,7 +1570,7 @@ body:has(#home) .card-icon {
     font-weight: 800;
 
     box-shadow:
-        0 5px 18px rgba(207, 173, 255, 0.25);
+        0 5px 18px rgba(164, 220, 247, 0.25);
 }
 
 
@@ -1636,8 +1616,8 @@ body:has(#home) .card-button {
 
     background:
         linear-gradient(100deg,
-            #70409f,
-            #a66bd1);
+            #03529D,
+            #3481C3);
 
     border-radius: 8px;
 
@@ -1656,13 +1636,13 @@ body:has(#home) .card-button:hover {
     transform: translateY(-2px);
 
     box-shadow:
-        0 0 20px rgba(207, 164, 255, 0.45);
+        0 0 20px rgba(164, 220, 247, 0.45);
 }
 
 
 /* =========================================================
    HOW IT WORKS
-   ========================================================= */
+========================================================= */
 
 body:has(#home) .how-it-works {
 
@@ -1712,7 +1692,7 @@ body:has(#home) .step {
 
 body:has(#home) .step:hover {
 
-    border-top-color: rgba(238, 208, 255, 0.80);
+    border-top-color: rgba(198, 234, 250, 0.80);
 
     transform: translateY(-4px);
 }
@@ -1724,7 +1704,7 @@ body:has(#home) .step>span {
 
     margin: 22px 0 15px;
 
-    color: #e5c8ff;
+    color: #C6EAFA;
 
     font-size: 14px;
 
@@ -1756,7 +1736,7 @@ body:has(#home) .step p {
 
 /* =========================================================
    FOOTER
-   ========================================================= */
+========================================================= */
 
 body:has(#home) footer {
 
@@ -1769,7 +1749,7 @@ body:has(#home) footer {
     text-align: center;
 
     background:
-        rgba(35, 25, 61, 0.72);
+        rgba(33, 63, 125, 0.82);
 
     color: rgba(255, 255, 255, 0.72);
 }
@@ -1791,7 +1771,7 @@ body:has(#home) footer p:first-child {
 
 /* =========================================================
    MOBILE
-   ========================================================= */
+========================================================= */
 
 @media (max-width: 800px) {
 
@@ -1800,18 +1780,15 @@ body:has(#home) footer p:first-child {
         padding: 0 5%;
     }
 
-
     body:has(#home) .nav-links {
 
         gap: 14px;
     }
 
-
     body:has(#home) .feature-cards {
 
         grid-template-columns: 1fr;
     }
-
 
     body:has(#home) .steps {
 
@@ -1819,7 +1796,6 @@ body:has(#home) footer p:first-child {
 
         gap: 25px;
     }
-
 
     body:has(#home) .hero h1 {
 
@@ -1835,24 +1811,20 @@ body:has(#home) footer p:first-child {
         display: none;
     }
 
-
     body:has(#home) .nav-links a {
 
         font-size: 12px;
     }
-
 
     body:has(#home) .hero {
 
         min-height: 470px;
     }
 
-
     body:has(#home) .hero h1 {
 
         font-size: 39px;
     }
-
 
     body:has(#home) .features,
     body:has(#home) .how-it-works {
